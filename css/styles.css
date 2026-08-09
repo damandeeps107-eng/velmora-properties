@@ -81,13 +81,11 @@ body {
   background-repeat: no-repeat;
   opacity: 0;
   transition: opacity 2s ease-in-out;
-  transform: scale(1.04);
+  will-change: opacity;
 }
 
 .site-bg-slide.active {
   opacity: 1;
-  transform: scale(1.00);
-  transition: opacity 2s ease-in-out, transform 8.5s ease-out;
 }
 
 .site-bg-overlay {
@@ -140,8 +138,7 @@ img {
 }
 
 .section .container {
-  background-color: rgba(255, 255, 255, 0.97);
-  backdrop-filter: blur(12px);
+  background-color: #ffffff;
   padding: 5rem 4rem;
   border-radius: 20px;
   border: 1px solid var(--color-border);

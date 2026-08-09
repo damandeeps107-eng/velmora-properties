@@ -52,7 +52,7 @@ html {
 
 body {
   font-family: var(--font-primary);
-  background-image: linear-gradient(rgba(255, 255, 255, 0.94), rgba(255, 255, 255, 0.94)), url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1920&q=80');
+  background-image: url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1920&q=80');
   background-attachment: fixed;
   background-size: cover;
   background-position: center;
@@ -102,23 +102,19 @@ img {
 
 /* Alternating Section Backgrounds for Premium Design Agency feel */
 .bg-primary {
-  background-color: rgba(255, 255, 255, 0.88);
-  backdrop-filter: blur(4px);
+  background-color: transparent;
 }
 
 .bg-secondary {
-  background-color: rgba(250, 248, 245, 0.90);
-  backdrop-filter: blur(4px);
+  background-color: transparent;
 }
 
 .bg-olive-light {
-  background-color: rgba(244, 246, 244, 0.90);
-  backdrop-filter: blur(4px);
+  background-color: transparent;
 }
 
 .bg-tertiary {
-  background-color: rgba(243, 239, 234, 0.90);
-  backdrop-filter: blur(4px);
+  background-color: transparent;
 }
 
 .section-header {

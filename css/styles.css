@@ -136,8 +136,18 @@ img {
 }
 
 .section {
-  padding: 8rem 0;
-  border-bottom: 1px solid var(--color-border);
+  padding: 6rem 0;
+}
+
+.section .container {
+  background-color: rgba(255, 255, 255, 0.97);
+  backdrop-filter: blur(12px);
+  padding: 5rem 4rem;
+  border-radius: 20px;
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-md);
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 
 /* Alternating Section Backgrounds for Premium Design Agency feel */
@@ -160,12 +170,6 @@ img {
 .section-header {
   max-width: 700px;
   margin-bottom: 4.5rem;
-  background-color: rgba(255, 255, 255, 0.94);
-  backdrop-filter: blur(8px);
-  padding: 2.5rem;
-  border-radius: var(--border-radius-md);
-  border: 1px solid var(--color-border);
-  box-shadow: var(--shadow-sm);
 }
 
 .tagline {
@@ -862,12 +866,7 @@ img {
 }
 
 .why-text-panel {
-  padding: 3rem;
-  background-color: rgba(255, 255, 255, 0.94);
-  backdrop-filter: blur(8px);
-  border-radius: var(--border-radius-md);
-  border: 1px solid var(--color-border);
-  box-shadow: var(--shadow-sm);
+  padding: 0;
 }
 
 .why-features {
@@ -991,12 +990,7 @@ img {
 }
 
 .about-text-content {
-  padding: 3rem;
-  background-color: rgba(255, 255, 255, 0.94);
-  backdrop-filter: blur(8px);
-  border-radius: var(--border-radius-md);
-  border: 1px solid var(--color-border);
-  box-shadow: var(--shadow-sm);
+  padding-right: 1rem;
 }
 
 .about-intro-highlight {
@@ -1767,16 +1761,20 @@ textarea.form-control {
   }
 
   .about-text-content {
-    padding: 1.5rem !important;
+    padding-right: 0 !important;
   }
 
   .why-text-panel {
-    padding: 1.5rem !important;
+    padding: 0 !important;
   }
 
   .section-header {
-    padding: 1.5rem !important;
     margin-bottom: 2.5rem !important;
+  }
+
+  .section .container {
+    padding: 3rem 1.5rem !important;
+    border-radius: 16px !important;
   }
   
   .hero-title {

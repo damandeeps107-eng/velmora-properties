@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Velmora Properties | Premium Real Estate Services</title>
+  
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Velmora Properties - Building Trust, Creating Value. Premier property sale and purchase services across Chandigarh, Mohali, Himachal Pradesh, Gurgaon, and Bathinda. Buy or sell lands, houses, agricultural land, and showrooms.">
+  <meta name="keywords" content="Velmora Properties, Real Estate Bathinda, Real Estate Chandigarh, Buy Land Chandigarh, Agricultural Land Punjab, Showrooms Gurgaon, Houses Mohali, Property Sale Purchase">
+  <meta name="author" content="Velmora Properties">
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Velmora Properties | Premium Real Estate">
+  <meta property="og:description" content="Building Trust, Creating Value. Property sale and purchase services across Chandigarh, Mohali, Himachal Pradesh, Gurgaon, and Bathinda.">
+  <meta property="og:image" content="assets/images/logo.png">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="assets/images/logo.png">
+  
+  <!-- CSS Stylesheet -->
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- 1. NAVBAR -->
+  <header class="header-wrapper">
+    <div class="container navbar">
+      <a href="#home" class="logo-container">
+        <img src="assets/images/logo.png" alt="Velmora Properties Logo" class="logo-img">
+        <div>
+          <span class="logo-text">Velmora Properties</span>
+          <span class="logo-subtitle">Building Trust, Creating Value</span>
+        </div>
+      </a>
+      
+      <nav>
+        <ul class="nav-menu">
+          <li><a href="#home" class="nav-link">Home</a></li>
+          <li><a href="#properties" class="nav-link">Properties</a></li>
+          <li><a href="#about" class="nav-link">About</a></li>
+          <li><a href="#services" class="nav-link">Services</a></li>
+          <li><a href="#contact" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+      
+      <div class="nav-actions">
+        <a href="#contact" class="btn btn-primary btn-sm">Enquire Now</a>
+      </div>
+      
+      <button class="mobile-toggle" aria-label="Toggle Navigation Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- 2. HERO SECTION (WITH LOOPING PREMIUM HOUSE WALKTHROUGH VIDEO) -->
+  <section id="home" class="hero">
+    <div class="hero-bg">
+      <video class="hero-video" autoplay loop muted playsinline poster="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=1920&q=80">
+        <source src="https://player.vimeo.com/external/371433846.sd.mp4?s=236da2f3c9415e7e199589d6d844fb2b23a0774a&profile_id=139&oauth2_token_id=57447761" type="video/mp4">
+      </video>
+    </div>
+    <div class="container">
+      <div class="hero-content">
+        <span class="hero-tagline">Velmora Properties</span>
+        <h1 class="hero-title">Find the Right Property.<br>Build the Right Future.</h1>
+        <p class="hero-desc">Trusted property sale and purchase services across Chandigarh, Mohali, Himachal Pradesh, Gurgaon and Bathinda.</p>
+        <div class="hero-buttons">
+          <a href="#properties" class="btn btn-primary">Explore Properties</a>
+          <a href="#contact" class="btn btn-secondary">Contact Us</a>
+        </div>
+      </div>
+    </div>
+    <div class="hero-scroll">
+      <span>Scroll</span>
+      <div class="hero-scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- 3. PROPERTY SEARCH / DISCOVERY SECTION -->
+  <div class="container search-container-outer">
+    <div class="search-panel reveal">
+      <form id="searchForm" class="search-form">
+        <div class="search-field">
+          <label for="searchType">Property Type</label>
+          <div class="select-wrapper">
+            <select id="searchType" required>
+              <option value="Land">Land</option>
+              <option value="House">House</option>
+              <option value="Killa / Agricultural Land">Killa / Agricultural Land</option>
+              <option value="Showroom">Showroom</option>
+            </select>
+          </div>
+        </div>
+        
+        <div class="search-field">
+          <label for="searchLocation">Location</label>
+          <div class="select-wrapper">
+            <select id="searchLocation" required>
+              <option value="Chandigarh">Chandigarh</option>
+              <option value="Mohali">Mohali</option>
+              <option value="Himachal Pradesh">Himachal Pradesh</option>
+              <option value="Gurgaon">Gurgaon</option>
+              <option value="Bathinda">Bathinda</option>
+            </select>
+          </div>
+        </div>
+        
+        <div class="search-field">
+          <label for="searchPurpose">Purpose</label>
+          <div class="select-wrapper">
+            <select id="searchPurpose" required>
+              <option value="Buy">Buy Property</option>
+              <option value="Sell">Sell Property</option>
+            </select>
+          </div>
+        </div>
+        
+        <div class="search-field">
+          <label>Expert Guidance</label>
+          <div class="select-wrapper">
+            <select disabled>
+              <option>Direct Agent Match</option>
+            </select>
+          </div>
+        </div>
+        
+        <div class="search-btn-wrapper">
+          <button type="submit" class="btn btn-primary btn-full">Search Properties</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- 4. PROPERTY CATEGORIES (WHITE BACKGROUND) -->
+  <section class="section bg-primary">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="tagline">Property Categories</span>
+        <h2 class="section-title">Tailored Property Portfolios</h2>
+        <p class="section-description">Explore our specialized real estate categories curated to match exact purchasing and investment needs.</p>
+      </div>
+      
+      <div class="category-grid reveal">
+        <!-- Category Card 1 -->
+        <div class="category-card">
+          <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=800&q=80" alt="Aerial view of clean residential plot land" class="category-card-img">
+          <div class="category-card-content">
+            <h3 class="category-card-title">Land</h3>
+            <a href="#contact" class="category-card-link">View Properties <span>→</span></a>
+          </div>
+        </div>
+        
+        <!-- Category Card 2 -->
+        <div class="category-card">
+          <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80" alt="Modern elegant luxury house exterior" class="category-card-img">
+          <div class="category-card-content">
+            <h3 class="category-card-title">Houses</h3>
+            <a href="#contact" class="category-card-link">View Properties <span>→</span></a>
+          </div>
+        </div>
+        
+        <!-- Category Card 3 -->
+        <div class="category-card">
+          <img src="https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&w=800&q=80" alt="Beautiful lush green agricultural land killa fields" class="category-card-img">
+          <div class="category-card-content">
+            <h3 class="category-card-title">Killa / Agricultural Land</h3>
+            <a href="#contact" class="category-card-link">View Properties <span>→</span></a>
+          </div>
+        </div>
+        
+        <!-- Category Card 4 -->
+        <div class="category-card">
+          <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=800&q=80" alt="Premium luxury retail showroom store front facade" class="category-card-img">
+          <div class="category-card-content">
+            <h3 class="category-card-title">Showrooms</h3>
+            <a href="#contact" class="category-card-link">View Properties <span>→</span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. FEATURED PROPERTIES (LIGHT WARM BEIGE BACKGROUND) -->
+  <section id="properties" class="section bg-secondary">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="tagline">Featured Portfolio</span>
+        <h2 class="section-title">Featured Listings</h2>
+        <p class="section-description">Our exclusive, premium properties are carefully verified before listings go live. Browse upcoming property cards below.</p>
+      </div>
+      
+      <div class="properties-grid reveal">
+        <!-- Placeholder Card 1 -->
+        <div class="property-card">
+          <div class="property-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=800&q=80" alt="Luxury home exterior design preview">
+            <div class="property-tag">Upcoming</div>
+            <div class="property-badge-coming-soon">Property Listing Coming Soon</div>
+          </div>
+          <div class="property-details-panel">
+            <span class="property-type-tag">House / Villa</span>
+            <h3 class="property-card-title">Premium Residential Project</h3>
+            
+            <div class="property-meta-row">
+              <div class="property-meta-item">
+                <span>Location:</span> Chandigarh
+              </div>
+              <div class="property-meta-item">
+                <span>Area:</span> TBD Sq.Ft.
+              </div>
+            </div>
+            
+            <div class="property-price-row">
+              <span class="property-price">Price on Request</span>
+            </div>
+            
+            <div class="property-actions">
+              <a href="#contact" class="btn btn-outline-green btn-sm">View Details</a>
+              <a href="https://wa.me/917719454182?text=Hello%20Velmora%20Properties%2C%20I%20am%20interested%20in%20the%20upcoming%20Chandigarh%20Residential%20Project." target="_blank" class="btn btn-whatsapp btn-sm">WhatsApp</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Placeholder Card 2 -->
+        <div class="property-card">
+          <div class="property-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=800&q=80" alt="Premium plot lands green fields preview">
+            <div class="property-tag">Upcoming</div>
+            <div class="property-badge-coming-soon">Property Listing Coming Soon</div>
+          </div>
+          <div class="property-details-panel">
+            <span class="property-type-tag">Land / Killa</span>
+            <h3 class="property-card-title">Agricultural & Farm Land Deals</h3>
+            
+            <div class="property-meta-row">
+              <div class="property-meta-item">
+                <span>Location:</span> Himachal Pradesh
+              </div>
+              <div class="property-meta-item">
+                <span>Area:</span> TBD Acres
+              </div>
+            </div>
+            
+            <div class="property-price-row">
+              <span class="property-price">Price on Request</span>
+            </div>
+            
+            <div class="property-actions">
+              <a href="#contact" class="btn btn-outline-green btn-sm">View Details</a>
+              <a href="https://wa.me/917719454182?text=Hello%20Velmora%20Properties%2C%20I%20am%20interested%20in%20the%20upcoming%20Himachal%20Pradesh%20Agricultural%20Land." target="_blank" class="btn btn-whatsapp btn-sm">WhatsApp</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Placeholder Card 3 -->
+        <div class="property-card">
+          <div class="property-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80" alt="High-end retail storefront showroom workspace preview">
+            <div class="property-tag">Upcoming</div>
+            <div class="property-badge-coming-soon">Property Listing Coming Soon</div>
+          </div>
+          <div class="property-details-panel">
+            <span class="property-type-tag">Showroom</span>
+            <h3 class="property-card-title">Commercial Retail Showrooms</h3>
+            
+            <div class="property-meta-row">
+              <div class="property-meta-item">
+                <span>Location:</span> Gurgaon
+              </div>
+              <div class="property-meta-item">
+                <span>Area:</span> TBD Sq.Ft.
+              </div>
+            </div>
+            
+            <div class="property-price-row">
+              <span class="property-price">Price on Request</span>
+            </div>
+            
+            <div class="property-actions">
+              <a href="#contact" class="btn btn-outline-green btn-sm">View Details</a>
+              <a href="https://wa.me/917719454182?text=Hello%20Velmora%20Properties%2C%20I%20am%20interested%20in%20the%20upcoming%20Gurgaon%20Commercial%20Showrooms." target="_blank" class="btn btn-whatsapp btn-sm">WhatsApp</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. WHY CHOOSE VELMORA (LIGHT OLIVE TINT BACKGROUND) -->
+  <section class="section bg-olive-light">
+    <div class="container">
+      <div class="why-section-grid">
+        <div class="reveal">
+          <span class="tagline">Our Values</span>
+          <h2 class="section-title">Why Choose Velmora Properties?</h2>
+          <p class="section-description" style="margin-bottom: 2rem;">Velmora Properties deals in property sale and purchase transactions. We facilitate reliable negotiations and verified real estate matchings based on transparent agency ethics.</p>
+          <a href="#contact" class="btn btn-primary">Start Your Journey</a>
+        </div>
+        
+        <div class="why-features reveal">
+          <!-- Feature 1 (SVG Checkmark) -->
+          <div class="feature-box">
+            <div class="feature-icon-wrapper">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+            </div>
+            <h3>Direct Property Deals</h3>
+            <p>We facilitate transparent, straightforward real estate transactions, matching buyers with sellers directly.</p>
+          </div>
+          <!-- Feature 2 (SVG Checkmark) -->
+          <div class="feature-box">
+            <div class="feature-icon-wrapper">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+            </div>
+            <h3>Verified Property Scope</h3>
+            <p>Every land parcel, agricultural field, house, and showroom is evaluated to match requirements precisely.</p>
+          </div>
+          <!-- Feature 3 (SVG Checkmark) -->
+          <div class="feature-box">
+            <div class="feature-icon-wrapper">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+            </div>
+            <h3>Regional Coverage</h3>
+            <p>Specialized agents across Chandigarh, Mohali, Himachal Pradesh, Gurgaon, and Bathinda.</p>
+          </div>
+          <!-- Feature 4 (SVG Checkmark) -->
+          <div class="feature-box">
+            <div class="feature-icon-wrapper">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+            </div>
+            <h3>Professional Ethics</h3>
+            <p>Upholding our brand motto "Building Trust, Creating Value" in every negotiation and legal alignment.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. LOCATIONS SECTION (LIGHT WARM BEIGE/SAND BACKGROUND) -->
+  <section class="section bg-tertiary">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="tagline">Our Territory</span>
+        <h2 class="section-title">Business Locations</h2>
+        <p class="section-description">Offering property sale and purchase services across prime real estate regions in Northern India.</p>
+      </div>
+      
+      <div class="locations-grid reveal">
+        <!-- Location 1 -->
+        <div class="location-card">
+          <img src="https://images.unsplash.com/photo-1626292100806-a83d3ff8d234?auto=format&fit=crop&w=600&q=80" alt="Planned urban architectures in Chandigarh" class="location-card-img">
+          <div class="location-card-content">
+            <h3 class="location-name">Chandigarh</h3>
+            <span class="location-tag">Union Territory</span>
+          </div>
+        </div>
+        
+        <!-- Location 2 -->
+        <div class="location-card">
+          <img src="https://images.unsplash.com/photo-1582407947304-fd86f028f716?auto=format&fit=crop&w=600&q=80" alt="Modern commercial infrastructure in Mohali" class="location-card-img">
+          <div class="location-card-content">
+            <h3 class="location-name">Mohali</h3>
+            <span class="location-tag">Punjab</span>
+          </div>
+        </div>
+        
+        <!-- Location 3 -->
+        <div class="location-card">
+          <img src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=600&q=80" alt="Beautiful forest mountains of Himachal Pradesh" class="location-card-img">
+          <div class="location-card-content">
+            <h3 class="location-name">Himachal Pradesh</h3>
+            <span class="location-tag">State Territory</span>
+          </div>
+        </div>
+        
+        <!-- Location 4 -->
+        <div class="location-card">
+          <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=600&q=80" alt="High-rise apartments in Gurgaon skyline" class="location-card-img">
+          <div class="location-card-content">
+            <h3 class="location-name">Gurgaon</h3>
+            <span class="location-tag">Haryana</span>
+          </div>
+        </div>
+        
+        <!-- Location 5 -->
+        <div class="location-card">
+          <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=600&q=80" alt="Grand heritage properties representing Bathinda" class="location-card-img">
+          <div class="location-card-content">
+            <h3 class="location-name">Bathinda</h3>
+            <span class="location-tag">Punjab</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. ABOUT SECTION (WHITE BACKGROUND) -->
+  <section id="about" class="section bg-primary">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-text-content reveal">
+          <span class="tagline">About Company</span>
+          <h2 class="section-title">Velmora Properties</h2>
+          <p class="about-intro-highlight">"Building Trust, Creating Value"</p>
+          <p class="about-body-text">
+            Velmora Properties is a professional real estate agency specializing in property sale and purchase transactions. Operating across key economic hubs including Chandigarh, Mohali, Himachal Pradesh, Gurgaon, and Bathinda, we help clients navigate property acquisitions and asset liquidations with confidence. Our operational foundation is built entirely on offering transparent real estate services designed to fulfill specific residential, commercial, and agricultural property mandates.
+          </p>
+          <div style="display: flex; gap: 2rem;">
+            <div>
+              <span style="font-size: 1.5rem; font-weight: 700; color: var(--color-accent-green); display: block;">Sale</span>
+              <span style="font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--color-text-light);">Property Selling</span>
+            </div>
+            <div style="border-left: 1px solid var(--color-border); padding-left: 2rem;">
+              <span style="font-size: 1.5rem; font-weight: 700; color: var(--color-accent-green); display: block;">Purchase</span>
+              <span style="font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--color-text-light);">Property Buying</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="about-image-wrapper reveal">
+          <div class="about-img-frame">
+            <img src="assets/images/team.png" alt="Velmora Properties Executive Professional at desk studying documentation">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9. SERVICES (LIGHT WARM BEIGE BACKGROUND) -->
+  <section id="services" class="section bg-secondary">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="tagline">What We Do</span>
+        <h2 class="section-title">Our Specialized Services</h2>
+        <p class="section-description">Dedicated real estate services designed around buyer demands and seller timelines.</p>
+      </div>
+      
+      <div class="services-grid reveal">
+        <!-- Service Card 1 -->
+        <div class="service-card">
+          <span class="service-card-num">01 / SERVICE</span>
+          <h3 class="service-card-title">Property Buying</h3>
+          <p class="service-card-desc">Find the perfect property across our key regions. We locate, verify, and assist in purchasing properties according to your investment mandate.</p>
+          <a href="#contact" class="service-card-link">Enquire <span>→</span></a>
+        </div>
+        
+        <!-- Service Card 2 -->
+        <div class="service-card">
+          <span class="service-card-num">02 / SERVICE</span>
+          <h3 class="service-card-title">Property Selling</h3>
+          <p class="service-card-desc">Liquidity optimization for owners looking to sell residential, commercial, or agricultural assets to verified buyers quickly.</p>
+          <a href="#contact" class="service-card-link">Enquire <span>→</span></a>
+        </div>
+        
+        <!-- Service Card 3 -->
+        <div class="service-card">
+          <span class="service-card-num">03 / SERVICE</span>
+          <h3 class="service-card-title">Land Deals</h3>
+          <p class="service-card-desc">Acquire premium plots of land suitable for building private estates, residential buildings, or corporate developments.</p>
+          <a href="#contact" class="service-card-link">Enquire <span>→</span></a>
+        </div>
+        
+        <!-- Service Card 4 -->
+        <div class="service-card">
+          <span class="service-card-num">04 / SERVICE</span>
+          <h3 class="service-card-title">Residential Properties</h3>
+          <p class="service-card-desc">Navigate the purchase and sale of high-quality homes and residential layouts positioned in high-growth neighborhoods.</p>
+          <a href="#contact" class="service-card-link">Enquire <span>→</span></a>
+        </div>
+        
+        <!-- Service Card 5 -->
+        <div class="service-card">
+          <span class="service-card-num">05 / SERVICE</span>
+          <h3 class="service-card-title">Commercial Properties</h3>
+          <p class="service-card-desc">Acquire and sell office units, premium properties, and institutional spaces optimized for business operations.</p>
+          <a href="#contact" class="service-card-link">Enquire <span>→</span></a>
+        </div>
+        
+        <!-- Service Card 6 -->
+        <div class="service-card">
+          <span class="service-card-num">06 / SERVICE</span>
+          <h3 class="service-card-title">Showroom Properties</h3>
+          <p class="service-card-desc">Find high-visibility commercial showrooms in premium retail clusters across Chandigarh, Gurgaon, Mohali, and Bathinda.</p>
+          <a href="#contact" class="service-card-link">Enquire <span>→</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10. PROPERTY ENQUIRY CTA -->
+  <section class="enquiry-cta">
+    <div class="enquiry-cta-bg"></div>
+    <div class="container">
+      <div class="enquiry-cta-content reveal">
+        <h2 class="enquiry-cta-title">Looking for the Right Property?</h2>
+        <p class="enquiry-cta-desc">Tell us what you're looking for and our team will help you explore suitable options.</p>
+        <div class="enquiry-cta-buttons">
+          <a href="https://wa.me/917719454182" target="_blank" class="btn btn-whatsapp">WhatsApp Us</a>
+          <a href="tel:+917719454182" class="btn btn-secondary">Call Now</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 11. CONTACT SECTION (WHITE BACKGROUND, WITH INTERACTIVE GOOGLE MAPS EMBED) -->
+  <section id="contact" class="section bg-primary">
+    <div class="container">
+      <div class="contact-grid">
+        <div class="contact-info-panel reveal">
+          <div>
+            <span class="tagline">Get In Touch</span>
+            <h2 class="section-title">Connect With Velmora</h2>
+            <p class="section-description">Reach out to our offices or talk to an agent directly to detail your property requirements.</p>
+          </div>
+          
+          <div class="contact-detail-group">
+            <span class="contact-label">Office Address</span>
+            <address class="contact-value">
+              Velmora Properties<br>
+              #298, Model Town Phase 2,<br>
+              Bathinda, Punjab
+            </address>
+          </div>
+          
+          <div class="contact-detail-group">
+            <span class="contact-label">Call & WhatsApp Services</span>
+            <div class="contact-value contact-value-large">
+              <a href="tel:+917719454182">+91 77194 54182</a><br>
+              <a href="tel:+917814954182">+91 78149 54182</a>
+            </div>
+          </div>
+
+          <div class="contact-detail-group">
+            <span class="contact-label">Email Address</span>
+            <div class="contact-value">
+              <a href="mailto:velmoraproperties786@gmail.com">velmoraproperties786@gmail.com</a>
+            </div>
+          </div>
+          
+          <div class="contact-detail-group">
+            <span class="contact-label">Follow Us</span>
+            <a href="https://instagram.com/velmora_properties786" target="_blank" class="contact-social-link">
+              @velmora_properties786
+            </a>
+          </div>
+
+          <!-- Live Google Maps Embed Container -->
+          <div class="map-embed-wrapper">
+            <iframe 
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3448.0163351239857!2d74.9511195!3d30.2081198!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3917329b35bc451b%3A0xe54d3f3fde52b5ea!2sModel%20Town%20Phase%202%2C%20Model%20Town%2C%20Bathinda%2C%20Punjab%20151001!5e0!3m2!1sen!2sin!4v1723223000000!5m2!1sen!2sin" 
+              allowfullscreen="" 
+              loading="lazy" 
+              referrerpolicy="no-referrer-when-downgrade"
+              title="Velmora Properties Office Location Map">
+            </iframe>
+          </div>
+        </div>
+        
+        <div class="contact-form-panel reveal">
+          <h3 class="form-title">Submit Property Requirement</h3>
+          <form id="contactForm">
+            <div id="formStatus" class="form-status"></div>
+            
+            <div class="form-grid">
+              <div class="form-group">
+                <label for="formName">Full Name</label>
+                <input type="text" id="formName" class="form-control" placeholder="Your Name" required>
+              </div>
+              
+              <div class="form-group">
+                <label for="formPhone">Phone Number</label>
+                <input type="tel" id="formPhone" class="form-control" placeholder="Your Phone Number" required>
+              </div>
+              
+              <div class="form-group">
+                <label for="formRequirement">Property Requirement</label>
+                <div class="select-wrapper">
+                  <select id="formRequirement" class="form-control" required>
+                    <option value="Land">Land</option>
+                    <option value="House">House</option>
+                    <option value="Killa / Agricultural Land">Killa / Agricultural Land</option>
+                    <option value="Showroom">Showroom</option>
+                  </select>
+                </div>
+              </div>
+              
+              <div class="form-group">
+                <label for="formLocation">Target Location</label>
+                <div class="select-wrapper">
+                  <select id="formLocation" class="form-control" required>
+                    <option value="Chandigarh">Chandigarh</option>
+                    <option value="Mohali">Mohali</option>
+                    <option value="Himachal Pradesh">Himachal Pradesh</option>
+                    <option value="Gurgaon">Gurgaon</option>
+                    <option value="Bathinda">Bathinda</option>
+                  </select>
+                </div>
+              </div>
+              
+              <div class="form-group form-group-full">
+                <label for="formMessage">Message Detail</label>
+                <textarea id="formMessage" class="form-control" placeholder="Please specify size, budget, or other requirements..." required></textarea>
+              </div>
+            </div>
+            
+            <div class="form-submit-wrapper">
+              <button type="submit" class="btn btn-primary btn-full">Submit Enquiry</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 12. FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <span class="footer-logo-text">Velmora Properties</span>
+          <p class="footer-tagline">"Building Trust, Creating Value"</p>
+        </div>
+        
+        <div>
+          <h4 class="footer-title">Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="#home" class="footer-link">Home</a></li>
+            <li><a href="#properties" class="footer-link">Properties</a></li>
+            <li><a href="#about" class="footer-link">About</a></li>
+            <li><a href="#services" class="footer-link">Services</a></li>
+            <li><a href="#contact" class="footer-link">Contact</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h4 class="footer-title">Locations</h4>
+          <div class="footer-locations">
+            <span>Chandigarh</span>
+            <span>Mohali</span>
+            <span>Himachal Pradesh</span>
+            <span>Gurgaon</span>
+            <span>Bathinda</span>
+          </div>
+        </div>
+        
+        <div>
+          <h4 class="footer-title">Direct Contact</h4>
+          <div class="footer-contact-list">
+            <div class="footer-contact-item">
+              <strong>Phones</strong>
+              <a href="tel:+917719454182" class="footer-link">+91 77194 54182</a><br>
+              <a href="tel:+917814954182" class="footer-link">+91 78149 54182</a>
+            </div>
+            <div class="footer-contact-item">
+              <strong>Email</strong>
+              <a href="mailto:velmoraproperties786@gmail.com" class="footer-link">velmoraproperties786@gmail.com</a>
+            </div>
+            <div class="footer-contact-item">
+              <strong>Instagram</strong>
+              <a href="https://instagram.com/velmora_properties786" target="_blank" class="footer-link">@velmora_properties786</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p>&copy; 2026 Velmora Properties. All Rights Reserved. Designed with Excellence.</p>
+        <p>Office: #298, Model Town Phase 2, Bathinda, Punjab</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JS Script -->
+  <script src="js/main.js"></script>
+</body>
+</html>

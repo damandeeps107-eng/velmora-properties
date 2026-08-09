@@ -87,7 +87,7 @@ function initHeader() {
     }
   };
   
-  window.addEventListener('scroll', handleScroll);
+  window.addEventListener('scroll', handleScroll, { passive: true });
   handleScroll();
 }
 
@@ -233,11 +233,13 @@ function renderTestimonials() {
 function initHeroSlider() {
   const slides = document.querySelectorAll('.hero-slide');
   const indicators = document.querySelectorAll('.slide-indicator-btn');
+  const heroSection = document.querySelector('.hero');
   if (slides.length === 0) return;
   
   let currentIdx = 0;
   let slideInterval;
   const slideDuration = 4500; // 4.5 seconds per transition
+  let isHeroVisible = true;
   
   const showSlide = (index) => {
     slides.forEach(slide => {
@@ -251,10 +253,12 @@ function initHeroSlider() {
     slides[currentIdx].classList.add('active');
     indicators[currentIdx].classList.add('active');
     
-    const activeVideo = slides[currentIdx].querySelector('video');
-    if (activeVideo) {
-      activeVideo.currentTime = 0;
-      activeVideo.play().catch(err => console.log('Video autoplay blocked by browser policies.', err));
+    if (isHeroVisible) {
+      const activeVideo = slides[currentIdx].querySelector('video');
+      if (activeVideo) {
+        activeVideo.currentTime = 0;
+        activeVideo.play().catch(err => console.log('Video autoplay blocked by browser policies.', err));
+      }
     }
   };
   
@@ -264,7 +268,9 @@ function initHeroSlider() {
   
   const startAutoplay = () => {
     stopAutoplay();
-    slideInterval = setInterval(nextSlide, slideDuration);
+    if (isHeroVisible) {
+      slideInterval = setInterval(nextSlide, slideDuration);
+    }
   };
   
   const stopAutoplay = () => {
@@ -280,9 +286,33 @@ function initHeroSlider() {
     });
   });
   
-  // Initialize first slide and start autoplay
-  showSlide(0);
-  startAutoplay();
+  // Intersection Observer to stop all slideshow animations and videos when scrolled out
+  if ('IntersectionObserver' in window && heroSection) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        isHeroVisible = entry.isIntersecting;
+        if (!isHeroVisible) {
+          stopAutoplay();
+          // Pause all videos
+          slides.forEach(slide => {
+            const video = slide.querySelector('video');
+            if (video) video.pause();
+          });
+          // Hide hero visuals to stop GPU paint loops
+          heroSection.classList.add('hero-hidden');
+        } else {
+          heroSection.classList.remove('hero-hidden');
+          showSlide(currentIdx);
+          startAutoplay();
+        }
+      });
+    }, { threshold: 0.1 });
+    
+    observer.observe(heroSection);
+  } else {
+    showSlide(0);
+    startAutoplay();
+  }
 }
 
 /**

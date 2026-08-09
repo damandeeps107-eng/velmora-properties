@@ -281,10 +281,13 @@ img {
   left: 0;
   width: 100%;
   z-index: 1000;
-  background-color: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px);
+  background-color: rgba(255, 255, 255, 0.98);
   border-bottom: 1px solid transparent;
   transition: var(--transition-smooth);
+}
+
+.hero-hidden .hero-slides-container {
+  display: none !important;
 }
 
 .header-wrapper.scrolled {

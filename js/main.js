@@ -70,6 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initForms();
   initSearch();
   initSmoothScroll();
+  initSiteBgSlider();
 });
 
 /**
@@ -369,4 +370,23 @@ function initSmoothScroll() {
       }
     });
   }
+}
+
+/**
+ * Site-wide background slider loop (smooth crossfade every 7.5 seconds)
+ */
+function initSiteBgSlider() {
+  const slides = document.querySelectorAll('.site-bg-slide');
+  if (slides.length === 0) return;
+  
+  let currentIdx = 0;
+  const slideDuration = 7500; // 7.5 seconds per transition
+  
+  const nextSlide = () => {
+    slides[currentIdx].classList.remove('active');
+    currentIdx = (currentIdx + 1) % slides.length;
+    slides[currentIdx].classList.add('active');
+  };
+  
+  setInterval(nextSlide, slideDuration);
 }

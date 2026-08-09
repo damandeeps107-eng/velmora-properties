@@ -52,7 +52,10 @@ html {
 
 body {
   font-family: var(--font-primary);
-  background-color: var(--color-bg-primary);
+  background-image: linear-gradient(rgba(255, 255, 255, 0.94), rgba(255, 255, 255, 0.94)), url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1920&q=80');
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
   color: var(--color-text-primary);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
@@ -99,19 +102,23 @@ img {
 
 /* Alternating Section Backgrounds for Premium Design Agency feel */
 .bg-primary {
-  background-color: var(--color-bg-primary);
+  background-color: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(4px);
 }
 
 .bg-secondary {
-  background-color: var(--color-bg-secondary);
+  background-color: rgba(250, 248, 245, 0.90);
+  backdrop-filter: blur(4px);
 }
 
 .bg-olive-light {
-  background-color: var(--color-bg-olive-light);
+  background-color: rgba(244, 246, 244, 0.90);
+  backdrop-filter: blur(4px);
 }
 
 .bg-tertiary {
-  background-color: var(--color-bg-tertiary);
+  background-color: rgba(243, 239, 234, 0.90);
+  backdrop-filter: blur(4px);
 }
 
 .section-header {
@@ -1049,8 +1056,7 @@ img {
 .enquiry-cta {
   background: linear-gradient(135deg, #FAF5F0 0%, #EBE3DD 100%);
   color: var(--color-text-primary);
-  padding: 6rem 0;
-  text-align: center;
+  padding: 3.5rem 0;
   position: relative;
   overflow: hidden;
   border-top: 1px solid var(--color-border);
@@ -1072,28 +1078,38 @@ img {
 .enquiry-cta-content {
   position: relative;
   z-index: 2;
-  max-width: 750px;
+  max-width: 1200px;
   margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-align: left;
+  gap: 3rem;
+}
+
+.enquiry-cta-text-wrapper {
+  flex: 1;
 }
 
 .enquiry-cta-title {
-  font-size: 3rem;
+  font-size: 2.25rem;
   color: var(--color-accent-green);
-  margin-bottom: 1.25rem;
+  margin-bottom: 0.5rem;
 }
 
 .enquiry-cta-desc {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   color: var(--color-text-secondary);
   font-weight: 400;
-  margin-bottom: 3rem;
-  line-height: 1.6;
+  margin-bottom: 0;
+  line-height: 1.5;
 }
 
 .enquiry-cta-buttons {
   display: flex;
-  justify-content: center;
+  align-items: center;
   gap: 1.5rem;
+  flex-shrink: 0;
 }
 
 .enquiry-cta-buttons .btn-secondary {
@@ -1842,14 +1858,25 @@ textarea.form-control {
     padding: 2rem;
   }
   
+  .enquiry-cta-content {
+    flex-direction: column;
+    text-align: center;
+    gap: 2rem;
+  }
+
   .enquiry-cta-title {
-    font-size: 2.25rem;
+    font-size: 1.85rem;
   }
   
+  .enquiry-cta-desc {
+    font-size: 0.95rem;
+  }
+
   .enquiry-cta-buttons {
     flex-direction: column;
     align-items: center;
     gap: 1rem;
+    width: 100%;
   }
   
   .enquiry-cta-buttons .btn {

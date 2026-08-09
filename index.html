@@ -57,24 +57,62 @@
     </div>
   </header>
 
-  <!-- 2. HERO SECTION (WITH LOOPING PREMIUM HOUSE WALKTHROUGH VIDEO) -->
+  <!-- 2. HERO SECTION (WITH KINETIC AUTO-SLIDING PROPERTY VISUALS) -->
   <section id="home" class="hero">
     <div class="hero-bg">
-      <video class="hero-video" autoplay loop muted playsinline poster="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=1920&q=80">
-        <source src="https://player.vimeo.com/external/371433846.sd.mp4?s=236da2f3c9415e7e199589d6d844fb2b23a0774a&profile_id=139&oauth2_token_id=57447761" type="video/mp4">
-      </video>
+      <!-- Slide 1: Luxury Villa -->
+      <div class="hero-slide active">
+        <img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=1920&q=80" alt="Luxury premium villa estate facade" class="hero-slide-media">
+      </div>
+      <!-- Slide 2: Modern Apartment -->
+      <div class="hero-slide">
+        <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=1920&q=80" alt="High-rise modern apartments skyline" class="hero-slide-media">
+      </div>
+      <!-- Slide 3: Premium Residential Interior -->
+      <div class="hero-slide">
+        <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1920&q=80" alt="Minimal premium living space room design" class="hero-slide-media">
+      </div>
+      <!-- Slide 4: Commercial Property Video Loop -->
+      <div class="hero-slide">
+        <video class="hero-slide-media" autoplay loop muted playsinline poster="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1920&q=80">
+          <source src="https://player.vimeo.com/external/371433846.sd.mp4?s=236da2f3c9415e7e199589d6d844fb2b23a0774a&profile_id=139&oauth2_token_id=57447761" type="video/mp4">
+        </video>
+      </div>
+      <!-- Slide 5: Luxury House Exterior -->
+      <div class="hero-slide">
+        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1920&q=80" alt="Luxury house exterior landscaping design" class="hero-slide-media">
+      </div>
+      <!-- Slide 6: City/Property Landscape -->
+      <div class="hero-slide">
+        <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1920&q=80" alt="Sunset skyline and property environments" class="hero-slide-media">
+      </div>
+      
+      <!-- Subtle Dark/Neutral Gradient Overlay (Replaces block box for premium aesthetics) -->
+      <div class="hero-overlay-gradient"></div>
     </div>
-    <div class="container">
+    
+    <div class="container" style="position: relative; z-index: 10;">
       <div class="hero-content">
         <span class="hero-tagline">Velmora Properties</span>
         <h1 class="hero-title">Find the Right Property.<br>Build the Right Future.</h1>
         <p class="hero-desc">Trusted property sale and purchase services across Chandigarh, Mohali, Himachal Pradesh, Gurgaon and Bathinda.</p>
         <div class="hero-buttons">
           <a href="#properties" class="btn btn-primary">Explore Properties</a>
-          <a href="#contact" class="btn btn-secondary">Contact Us</a>
+          <a href="#contact" class="btn btn-secondary">Talk to an Advisor</a>
         </div>
       </div>
     </div>
+    
+    <!-- Hero Slider Controls & Indicators -->
+    <div class="hero-slider-indicators">
+      <button class="slide-indicator-btn active" data-slide-to="0" aria-label="Slide 1">01</button>
+      <button class="slide-indicator-btn" data-slide-to="1" aria-label="Slide 2">02</button>
+      <button class="slide-indicator-btn" data-slide-to="2" aria-label="Slide 3">03</button>
+      <button class="slide-indicator-btn" data-slide-to="3" aria-label="Slide 4">04</button>
+      <button class="slide-indicator-btn" data-slide-to="4" aria-label="Slide 5">05</button>
+      <button class="slide-indicator-btn" data-slide-to="5" aria-label="Slide 6">06</button>
+    </div>
+    
     <div class="hero-scroll">
       <span>Scroll</span>
       <div class="hero-scroll-line"></div>
@@ -136,7 +174,7 @@
     </div>
   </div>
 
-  <!-- 4. ABOUT SECTION (BROUGHT TO TOP, WHITE BACKGROUND, COMPACT LAYOUT WITH HORIZONTAL DETAILS) -->
+  <!-- 4. ABOUT SECTION (WHITE BACKGROUND, COMPACT LAYOUT WITH HORIZONTAL DETAILS) -->
   <section id="about" class="section bg-primary">
     <div class="container">
       <div class="about-grid">
@@ -174,8 +212,40 @@
     </div>
   </section>
 
-  <!-- 5. PROPERTY CATEGORIES (LIGHT WARM BEIGE BACKGROUND) -->
-  <section class="section bg-secondary">
+  <!-- 4.5 TRUST / STATS SECTION (LIGHT WARM BEIGE BACKGROUND) -->
+  <section class="section bg-secondary" style="padding: 5rem 0;">
+    <div class="container">
+      <div class="stats-grid reveal">
+        <!-- Stat Card 1 -->
+        <div class="stat-card">
+          <span class="stat-value">XX+</span>
+          <h4 class="stat-title">Properties Listed</h4>
+          <p class="stat-desc">A selection of premium residential and commercial spaces pending verification.</p>
+        </div>
+        <!-- Stat Card 2 -->
+        <div class="stat-card">
+          <span class="stat-value">XX+</span>
+          <h4 class="stat-title">Happy Clients</h4>
+          <p class="stat-desc">Fulfilling buying and selling mandates across regions with absolute integrity.</p>
+        </div>
+        <!-- Stat Card 3 -->
+        <div class="stat-card">
+          <span class="stat-value">XX+</span>
+          <h4 class="stat-title">Locations Served</h4>
+          <p class="stat-desc">Dedicated physical agent networks managing properties across 5 core cities.</p>
+        </div>
+        <!-- Stat Card 4 -->
+        <div class="stat-card">
+          <span class="stat-value">XX+</span>
+          <h4 class="stat-title">Years of Experience</h4>
+          <p class="stat-desc">Deep industrial real estate insights backed by transparent business standards.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. PROPERTY CATEGORIES (WHITE BACKGROUND) -->
+  <section class="section bg-primary">
     <div class="container">
       <div class="section-header reveal">
         <span class="tagline">Property Categories</span>
@@ -186,7 +256,7 @@
       <div class="category-grid reveal">
         <!-- Category Card 1 -->
         <div class="category-card">
-          <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=800&q=80" alt="Aerial view of clean residential plot land" class="category-card-img">
+          <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=800&q=80" alt="Aerial view of clean residential plot land" class="category-card-img" loading="lazy">
           <div class="category-card-content">
             <h3 class="category-card-title">Land</h3>
             <a href="#contact" class="category-card-link">View Properties <span>→</span></a>
@@ -195,7 +265,7 @@
         
         <!-- Category Card 2 -->
         <div class="category-card">
-          <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80" alt="Modern elegant luxury house exterior" class="category-card-img">
+          <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80" alt="Modern elegant luxury house exterior" class="category-card-img" loading="lazy">
           <div class="category-card-content">
             <h3 class="category-card-title">Houses</h3>
             <a href="#contact" class="category-card-link">View Properties <span>→</span></a>
@@ -204,7 +274,7 @@
         
         <!-- Category Card 3 -->
         <div class="category-card">
-          <img src="https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&w=800&q=80" alt="Beautiful lush green agricultural land killa fields" class="category-card-img">
+          <img src="https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&w=800&q=80" alt="Beautiful lush green agricultural land killa fields" class="category-card-img" loading="lazy">
           <div class="category-card-content">
             <h3 class="category-card-title">Killa / Agricultural Land</h3>
             <a href="#contact" class="category-card-link">View Properties <span>→</span></a>
@@ -213,7 +283,7 @@
         
         <!-- Category Card 4 -->
         <div class="category-card">
-          <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=800&q=80" alt="Premium luxury retail showroom store front facade" class="category-card-img">
+          <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=800&q=80" alt="Premium luxury retail showroom store front facade" class="category-card-img" loading="lazy">
           <div class="category-card-content">
             <h3 class="category-card-title">Showrooms</h3>
             <a href="#contact" class="category-card-link">View Properties <span>→</span></a>
@@ -223,8 +293,8 @@
     </div>
   </section>
 
-  <!-- 6. FEATURED PROPERTIES (WHITE BACKGROUND) -->
-  <section id="properties" class="section bg-primary">
+  <!-- 6. FEATURED PROPERTIES (LIGHT WARM BEIGE BACKGROUND - RENDERS DYNAMICALLY) -->
+  <section id="properties" class="section bg-secondary">
     <div class="container">
       <div class="section-header reveal">
         <span class="tagline">Featured Portfolio</span>
@@ -232,100 +302,8 @@
         <p class="section-description">Our exclusive, premium properties are carefully verified before listings go live. Browse upcoming property cards below.</p>
       </div>
       
-      <div class="properties-grid reveal">
-        <!-- Placeholder Card 1 -->
-        <div class="property-card">
-          <div class="property-img-wrapper">
-            <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=800&q=80" alt="Luxury home exterior design preview">
-            <div class="property-tag">Upcoming</div>
-            <div class="property-badge-coming-soon">Property Listing Coming Soon</div>
-          </div>
-          <div class="property-details-panel">
-            <span class="property-type-tag">House / Villa</span>
-            <h3 class="property-card-title">Premium Residential Project</h3>
-            
-            <div class="property-meta-row">
-              <div class="property-meta-item">
-                <span>Location:</span> Chandigarh
-              </div>
-              <div class="property-meta-item">
-                <span>Area:</span> TBD Sq.Ft.
-              </div>
-            </div>
-            
-            <div class="property-price-row">
-              <span class="property-price">Price on Request</span>
-            </div>
-            
-            <div class="property-actions">
-              <a href="#contact" class="btn btn-outline-green btn-sm">View Details</a>
-              <a href="https://wa.me/917719454182?text=Hello%20Velmora%20Properties%2C%20I%20am%20interested%20in%20the%20upcoming%20Chandigarh%20Residential%20Project." target="_blank" class="btn btn-whatsapp btn-sm">WhatsApp</a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Placeholder Card 2 -->
-        <div class="property-card">
-          <div class="property-img-wrapper">
-            <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=800&q=80" alt="Premium plot lands green fields preview">
-            <div class="property-tag">Upcoming</div>
-            <div class="property-badge-coming-soon">Property Listing Coming Soon</div>
-          </div>
-          <div class="property-details-panel">
-            <span class="property-type-tag">Land / Killa</span>
-            <h3 class="property-card-title">Agricultural & Farm Land Deals</h3>
-            
-            <div class="property-meta-row">
-              <div class="property-meta-item">
-                <span>Location:</span> Himachal Pradesh
-              </div>
-              <div class="property-meta-item">
-                <span>Area:</span> TBD Acres
-              </div>
-            </div>
-            
-            <div class="property-price-row">
-              <span class="property-price">Price on Request</span>
-            </div>
-            
-            <div class="property-actions">
-              <a href="#contact" class="btn btn-outline-green btn-sm">View Details</a>
-              <a href="https://wa.me/917719454182?text=Hello%20Velmora%20Properties%2C%20I%20am%20interested%20in%20the%20upcoming%20Himachal%20Pradesh%20Agricultural%20Land." target="_blank" class="btn btn-whatsapp btn-sm">WhatsApp</a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Placeholder Card 3 -->
-        <div class="property-card">
-          <div class="property-img-wrapper">
-            <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80" alt="High-end retail storefront showroom workspace preview">
-            <div class="property-tag">Upcoming</div>
-            <div class="property-badge-coming-soon">Property Listing Coming Soon</div>
-          </div>
-          <div class="property-details-panel">
-            <span class="property-type-tag">Showroom</span>
-            <h3 class="property-card-title">Commercial Retail Showrooms</h3>
-            
-            <div class="property-meta-row">
-              <div class="property-meta-item">
-                <span>Location:</span> Gurgaon
-              </div>
-              <div class="property-meta-item">
-                <span>Area:</span> TBD Sq.Ft.
-              </div>
-            </div>
-            
-            <div class="property-price-row">
-              <span class="property-price">Price on Request</span>
-            </div>
-            
-            <div class="property-actions">
-              <a href="#contact" class="btn btn-outline-green btn-sm">View Details</a>
-              <a href="https://wa.me/917719454182?text=Hello%20Velmora%20Properties%2C%20I%20am%20interested%20in%20the%20upcoming%20Gurgaon%20Commercial%20Showrooms." target="_blank" class="btn btn-whatsapp btn-sm">WhatsApp</a>
-            </div>
-          </div>
-        </div>
-      </div>
+      <!-- Grid loaded dynamically from central JS data array -->
+      <div id="propertiesGrid" class="properties-grid reveal"></div>
     </div>
   </section>
 
@@ -390,7 +368,7 @@
       <div class="locations-grid reveal">
         <!-- Location 1 -->
         <div class="location-card">
-          <img src="https://images.unsplash.com/photo-1626292100806-a83d3ff8d234?auto=format&fit=crop&w=600&q=80" alt="Planned urban architectures in Chandigarh" class="location-card-img">
+          <img src="https://images.unsplash.com/photo-1626292100806-a83d3ff8d234?auto=format&fit=crop&w=600&q=80" alt="Planned urban architectures in Chandigarh" class="location-card-img" loading="lazy">
           <div class="location-card-content">
             <h3 class="location-name">Chandigarh</h3>
             <span class="location-tag">Union Territory</span>
@@ -399,7 +377,7 @@
         
         <!-- Location 2 -->
         <div class="location-card">
-          <img src="https://images.unsplash.com/photo-1582407947304-fd86f028f716?auto=format&fit=crop&w=600&q=80" alt="Modern commercial infrastructure in Mohali" class="location-card-img">
+          <img src="https://images.unsplash.com/photo-1582407947304-fd86f028f716?auto=format&fit=crop&w=600&q=80" alt="Modern commercial infrastructure in Mohali" class="location-card-img" loading="lazy">
           <div class="location-card-content">
             <h3 class="location-name">Mohali</h3>
             <span class="location-tag">Punjab</span>
@@ -408,7 +386,7 @@
         
         <!-- Location 3 -->
         <div class="location-card">
-          <img src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=600&q=80" alt="Beautiful forest mountains of Himachal Pradesh" class="location-card-img">
+          <img src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=600&q=80" alt="Beautiful forest mountains of Himachal Pradesh" class="location-card-img" loading="lazy">
           <div class="location-card-content">
             <h3 class="location-name">Himachal Pradesh</h3>
             <span class="location-tag">State Territory</span>
@@ -417,7 +395,7 @@
         
         <!-- Location 4 -->
         <div class="location-card">
-          <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=600&q=80" alt="High-rise apartments in Gurgaon skyline" class="location-card-img">
+          <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=600&q=80" alt="High-rise apartments in Gurgaon skyline" class="location-card-img" loading="lazy">
           <div class="location-card-content">
             <h3 class="location-name">Gurgaon</h3>
             <span class="location-tag">Haryana</span>
@@ -426,7 +404,7 @@
         
         <!-- Location 5 -->
         <div class="location-card">
-          <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=600&q=80" alt="Grand heritage properties representing Bathinda" class="location-card-img">
+          <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=600&q=80" alt="Grand heritage properties representing Bathinda" class="location-card-img" loading="lazy">
           <div class="location-card-content">
             <h3 class="location-name">Bathinda</h3>
             <span class="location-tag">Punjab</span>
@@ -436,8 +414,8 @@
     </div>
   </section>
 
-  <!-- 9. SERVICES (LIGHT WARM BEIGE BACKGROUND) -->
-  <section id="services" class="section bg-secondary">
+  <!-- 9. SERVICES (WHITE BACKGROUND) -->
+  <section id="services" class="section bg-primary">
     <div class="container">
       <div class="section-header reveal">
         <span class="tagline">What We Do</span>
@@ -494,6 +472,20 @@
           <a href="#contact" class="service-card-link">Enquire <span>→</span></a>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- 9.5 PREMIUM TESTIMONIALS SECTION (LIGHT WARM BEIGE BACKGROUND - RENDERS DYNAMICALLY) -->
+  <section class="section bg-secondary">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="tagline">Client Feedback</span>
+        <h2 class="section-title">Client Testimonials</h2>
+        <p class="section-description">Read reviews and placeholder feedback from institutional and residential partners pending review updates.</p>
+      </div>
+      
+      <!-- Loaded dynamically from JS Testimonials data array -->
+      <div id="testimonialsGrid" class="testimonials-grid reveal"></div>
     </div>
   </section>
 
@@ -561,6 +553,7 @@
           </div>
         </div>
         
+        <!-- UPGRADED LEAD ENQUIRY FORM -->
         <div class="contact-form-panel reveal">
           <h3 class="form-title">Submit Property Requirement</h3>
           <form id="contactForm">
@@ -578,9 +571,19 @@
               </div>
               
               <div class="form-group">
-                <label for="formRequirement">Property Requirement</label>
+                <label for="formRequirement">Requirement</label>
                 <div class="select-wrapper">
                   <select id="formRequirement" class="form-control" required>
+                    <option value="Buy">Buy Property</option>
+                    <option value="Sell">Sell Property</option>
+                  </select>
+                </div>
+              </div>
+              
+              <div class="form-group">
+                <label for="formType">Property Type</label>
+                <div class="select-wrapper">
+                  <select id="formType" class="form-control" required>
                     <option value="Land">Land</option>
                     <option value="House">House</option>
                     <option value="Killa / Agricultural Land">Killa / Agricultural Land</option>
@@ -590,7 +593,7 @@
               </div>
               
               <div class="form-group">
-                <label for="formLocation">Target Location</label>
+                <label for="formLocation">Preferred Location</label>
                 <div class="select-wrapper">
                   <select id="formLocation" class="form-control" required>
                     <option value="Chandigarh">Chandigarh</option>
@@ -602,14 +605,19 @@
                 </div>
               </div>
               
+              <div class="form-group">
+                <label for="formBudget">Budget Range</label>
+                <input type="text" id="formBudget" class="form-control" placeholder="e.g. Under 50 Lakh, 1-2 Crore" required>
+              </div>
+              
               <div class="form-group form-group-full">
                 <label for="formMessage">Message Detail</label>
-                <textarea id="formMessage" class="form-control" placeholder="Please specify size, budget, or other requirements..." required></textarea>
+                <textarea id="formMessage" class="form-control" placeholder="Please specify size requirements, timeline or target sectors..." required></textarea>
               </div>
             </div>
             
             <div class="form-submit-wrapper">
-              <button type="submit" class="btn btn-primary btn-full">Submit Enquiry</button>
+              <button type="submit" class="btn btn-primary btn-full">Request Property Assistance</button>
             </div>
           </form>
         </div>

@@ -5,36 +5,38 @@
 // Central Editable Data Structures
 const PROPERTIES_DATA = [
   {
-    name: "Luxury Premium Villa",
-    location: "Mohali, Punjab",
-    type: "House",
-    area: "3,200 sq.ft.",
-    bedrooms: 4,
-    bathrooms: 4,
-    price: "Price on Request",
-    status: "Available [Placeholder]",
-    image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80"
-  },
-  {
-    name: "Commercial Retail Showroom",
-    location: "Gurgaon, Haryana",
-    type: "Showroom",
-    area: "4,500 sq.ft.",
-    bedrooms: "N/A",
-    bathrooms: 2,
-    price: "Price on Request",
-    status: "Available [Placeholder]",
-    image: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80"
-  },
-  {
-    name: "Agricultural & Farm Land Deals",
-    location: "Himachal Pradesh",
-    type: "Killa / Agricultural Land",
-    area: "10 Acres",
+    name: "The Marq by Atlantis",
+    location: "Block B, Aerocity, Mohali",
+    type: "Showrooms & Retail",
+    area: "Premium Spaces",
     bedrooms: "N/A",
     bathrooms: "N/A",
     price: "Price on Request",
-    status: "Available [Placeholder]",
+    status: "New Launch",
+    image: "assets/images/marq_cover.png",
+    brochure: "assets/Marq_by_Atlantis_Brochure.pdf"
+  },
+  {
+    name: "Marina Suites Premium Apartments",
+    location: "Mohali, Punjab",
+    type: "Luxury Residential",
+    area: "Multiple Layouts",
+    bedrooms: "2, 3 & 4 BHK",
+    bathrooms: "2, 3 & 4",
+    price: "Price on Request",
+    status: "Exclusive Listing",
+    image: "assets/images/marina_cover.png",
+    brochure: "assets/Marina_Suites_Brochure.pdf"
+  },
+  {
+    name: "Agricultural & Farm Land Deals",
+    location: "Himachal Pradesh & Punjab",
+    type: "Agricultural Land",
+    area: "10+ Acres Available",
+    bedrooms: "N/A",
+    bathrooms: "N/A",
+    price: "Price on Request",
+    status: "Direct Deal",
     image: "https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&w=800&q=80"
   }
 ];
@@ -197,7 +199,14 @@ function renderProperties() {
         </div>
         
         <div class="property-actions">
-          <a href="#contact" class="btn btn-outline-green btn-sm">View Details</a>
+          ${prop.brochure ? `
+            <a href="${prop.brochure}" download class="btn btn-outline-green btn-sm" style="display: inline-flex; align-items: center; gap: 0.35rem; font-size: 0.75rem;">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
+              Brochure
+            </a>
+          ` : `
+            <a href="#contact" class="btn btn-outline-green btn-sm">View Details</a>
+          `}
           <a href="https://wa.me/917719454182?text=Hello%20Velmora%20Properties%2C%20I%20am%20interested%20in%20the%20${encodeURIComponent(prop.name)}%20located%20in%20${encodeURIComponent(prop.location)}." target="_blank" class="btn btn-whatsapp btn-sm">WhatsApp</a>
         </div>
       </div>

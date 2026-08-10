@@ -38,6 +38,7 @@ const PROPERTIES_DATA = [
     price: "Price on Request",
     status: "Coming Soon",
     image: "assets/images/marq_cover.jpg",
+    objectPosition: "top center",
     brochure: "assets/Marq_by_Atlantis_Brochure.pdf"
   },
   {
@@ -181,7 +182,7 @@ function renderProperties() {
   grid.innerHTML = PROPERTIES_DATA.map(prop => `
     <div class="property-card">
       <div class="property-img-wrapper">
-        <img src="${prop.image}" alt="${prop.name}" loading="lazy">
+        <img src="${prop.image}" alt="${prop.name}" loading="lazy" style="${prop.objectPosition ? `object-position: ${prop.objectPosition};` : ''}">
         <div class="property-tag">${prop.status}</div>
       </div>
       <div class="property-details-panel">

@@ -37,7 +37,7 @@ const PROPERTIES_DATA = [
     bathrooms: "N/A",
     price: "Price on Request",
     status: "Coming Soon",
-    image: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=800&q=80",
+    image: "assets/images/marq_cover.jpg",
     brochure: "assets/Marq_by_Atlantis_Brochure.pdf"
   },
   {

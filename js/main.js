@@ -8,9 +8,7 @@ const PROPERTIES_DATA = [
     name: "Mohali Crown",
     location: "Block B, Aerocity, Mohali",
     type: "Showrooms & Retail",
-    area: "Premium Spaces",
-    bedrooms: "N/A",
-    bathrooms: "N/A",
+    bhk: "1, 2 BHK",
     price: "Price on Request",
     status: "New Launch",
     image: "assets/images/mohali_crown_cover.png",
@@ -20,9 +18,7 @@ const PROPERTIES_DATA = [
     name: "Marina Suites Premium Apartments",
     location: "Mohali, Punjab",
     type: "Luxury Residential",
-    area: "Multiple Layouts",
-    bedrooms: "2, 3 & 4 BHK",
-    bathrooms: "2, 3 & 4",
+    bhk: "2, 3 & 4 BHK",
     price: "Price on Request",
     status: "Exclusive Listing",
     image: "assets/images/marina_cover.png",
@@ -32,9 +28,7 @@ const PROPERTIES_DATA = [
     name: "The Marq by Atlantis",
     location: "Aerocity, Mohali, Punjab",
     type: "High-End Mixed-Use",
-    area: "Premium Commercial",
-    bedrooms: "N/A",
-    bathrooms: "N/A",
+    bhk: "3, 4, 5 BHK",
     price: "Price on Request",
     status: "",
     image: "assets/images/marq_cover.jpg",
@@ -45,9 +39,7 @@ const PROPERTIES_DATA = [
     name: "Agricultural & Farm Land Deals",
     location: "Himachal Pradesh & Punjab",
     type: "Agricultural Land",
-    area: "10+ Acres Available",
-    bedrooms: "N/A",
-    bathrooms: "N/A",
+    bhk: "",
     price: "Price on Request",
     status: "Direct Deal",
     image: "https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&w=800&q=80"
@@ -189,17 +181,13 @@ function renderProperties() {
         <span class="property-type-tag">${prop.type}</span>
         <h3 class="property-card-title">${prop.name}</h3>
         
-        <div class="property-meta-row">
+        ${prop.bhk ? `
+        <div class="property-meta-row" style="border-bottom: none; padding-bottom: 0; margin-bottom: 0.5rem;">
           <div class="property-meta-item">
-            <span>Area:</span> ${prop.area}
-          </div>
-          <div class="property-meta-item">
-            <span>Beds:</span> ${prop.bedrooms}
-          </div>
-          <div class="property-meta-item">
-            <span>Baths:</span> ${prop.bathrooms}
+            <span>Configuration:</span> ${prop.bhk}
           </div>
         </div>
+        ` : ''}
         
         <div class="property-price-row">
           <span class="property-price">${prop.price}</span>

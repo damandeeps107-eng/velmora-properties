@@ -36,7 +36,7 @@ const PROPERTIES_DATA = [
     bedrooms: "N/A",
     bathrooms: "N/A",
     price: "Price on Request",
-    status: "Coming Soon",
+    status: "",
     image: "assets/images/marq_cover.jpg",
     objectPosition: "top center",
     brochure: "assets/Marq_by_Atlantis_Brochure.pdf"
@@ -183,7 +183,7 @@ function renderProperties() {
     <div class="property-card">
       <div class="property-img-wrapper">
         <img src="${prop.image}" alt="${prop.name}" loading="lazy" style="${prop.objectPosition ? `object-position: ${prop.objectPosition};` : ''}">
-        <div class="property-tag">${prop.status}</div>
+        ${prop.status ? `<div class="property-tag">${prop.status}</div>` : ''}
       </div>
       <div class="property-details-panel">
         <span class="property-type-tag">${prop.type}</span>
@@ -191,14 +191,8 @@ function renderProperties() {
         
         <div class="property-meta-row">
           <div class="property-meta-item">
-            <span>Location:</span> ${prop.location}
-          </div>
-          <div class="property-meta-item">
             <span>Area:</span> ${prop.area}
           </div>
-        </div>
-        
-        <div class="property-meta-row" style="margin-top: -1rem; border-top: 0; padding-top: 0;">
           <div class="property-meta-item">
             <span>Beds:</span> ${prop.bedrooms}
           </div>

@@ -5,7 +5,7 @@
 // Central Editable Data Structures
 const PROPERTIES_DATA = [
   {
-    name: "The Marq by Atlantis",
+    name: "Mohali Crown",
     location: "Block B, Aerocity, Mohali",
     type: "Showrooms & Retail",
     area: "Premium Spaces",
@@ -13,8 +13,8 @@ const PROPERTIES_DATA = [
     bathrooms: "N/A",
     price: "Price on Request",
     status: "New Launch",
-    image: "assets/images/marq_cover.png",
-    brochure: "assets/Marq_by_Atlantis_Brochure.pdf"
+    image: "assets/images/mohali_crown_cover.png",
+    brochure: "assets/Mohali_Crown_Brochure.pdf"
   },
   {
     name: "Marina Suites Premium Apartments",
@@ -27,6 +27,17 @@ const PROPERTIES_DATA = [
     status: "Exclusive Listing",
     image: "assets/images/marina_cover.png",
     brochure: "assets/Marina_Suites_Brochure.pdf"
+  },
+  {
+    name: "The Marq by Atlantis",
+    location: "Aerocity, Mohali, Punjab",
+    type: "High-End Mixed-Use",
+    area: "Premium Commercial",
+    bedrooms: "N/A",
+    bathrooms: "N/A",
+    price: "Price on Request",
+    status: "Coming Soon",
+    image: "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=800&q=80"
   },
   {
     name: "Agricultural & Farm Land Deals",

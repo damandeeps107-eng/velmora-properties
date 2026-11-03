@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.VelmoraAdmin" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">#07150e</item>
+        <item name="colorPrimaryVariant">#050e09</item>
+        <item name="colorOnPrimary">#d4af37</item>
+        <item name="android:statusBarColor">#07150e</item>
+        <item name="android:navigationBarColor">#07150e</item>
+    </style>
+</resources>

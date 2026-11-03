@@ -371,21 +371,21 @@
     .btn-gold {
       background: linear-gradient(135deg, #d4af37, #aa8724);
       color: #07150e;
-      font-weight: 600;
+      font-weight: 700;
       border: none;
       border-radius: var(--radius-sm);
-      padding: 0.65rem 1.25rem;
+      padding: 0.75rem 1.5rem;
       cursor: pointer;
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
-      font-size: 0.9rem;
+      font-size: 0.95rem;
       transition: all 0.2s ease;
     }
 
     .btn-gold:hover {
       transform: translateY(-1px);
-      box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+      box-shadow: 0 4px 20px rgba(212, 175, 55, 0.4);
     }
 
     .btn-excel {
@@ -437,8 +437,8 @@
 
     .form-label {
       font-size: 0.85rem;
-      font-weight: 500;
-      color: var(--text-muted);
+      font-weight: 600;
+      color: var(--text-main);
     }
 
     .form-control {
@@ -462,12 +462,96 @@
       color: var(--text-main);
     }
 
+    /* ─── LAPTOP FINDER / FILE UPLOAD DROPZONE ─── */
+    .upload-zone-box {
+      border: 2px dashed var(--border-color);
+      background: var(--bg-input);
+      border-radius: var(--radius-md);
+      padding: 1.5rem;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      position: relative;
+    }
+
+    .upload-zone-box:hover, .upload-zone-box.dragover {
+      border-color: var(--accent-gold);
+      background: rgba(212, 175, 55, 0.05);
+    }
+
+    .upload-icon-circle {
+      width: 52px;
+      height: 52px;
+      background: rgba(212, 175, 55, 0.15);
+      border: 1px solid var(--accent-gold);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      margin: 0 auto 0.75rem;
+    }
+
+    .upload-title {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--accent-gold-light);
+      margin-bottom: 0.25rem;
+    }
+
+    .upload-desc {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .image-preview-panel {
+      display: none;
+      background: var(--bg-input);
+      border: 1px solid var(--accent-gold);
+      border-radius: var(--radius-md);
+      padding: 1rem;
+      margin-top: 1rem;
+      align-items: center;
+      gap: 1rem;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .preview-thumbnail {
+      width: 110px;
+      height: 75px;
+      object-fit: cover;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-color);
+    }
+
+    .preview-info {
+      flex: 1;
+    }
+
+    .preview-name {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #fff;
+    }
+
+    .preview-meta {
+      font-size: 0.75rem;
+      color: var(--accent-green);
+      margin-top: 2px;
+    }
+
     /* PRESET IMAGES PICKER */
+    .preset-header {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 1.25rem;
+      margin-bottom: 0.5rem;
+    }
+
     .preset-photos {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
       gap: 0.75rem;
-      margin-top: 0.5rem;
     }
 
     .preset-item {
@@ -949,7 +1033,7 @@
           </div>
         </div>
 
-        <!-- ADD PROPERTY ACCORDION / FORM -->
+        <!-- ADD PROPERTY FORM -->
         <div class="panel-card">
           <h3 style="color: var(--accent-gold); font-size: 1.2rem; margin-bottom: 1.25rem; display: flex; align-items: center; gap: 0.5rem;">
             <span>➕</span> Add New Property to Website
@@ -959,7 +1043,7 @@
             <div class="form-grid">
               <div class="form-group">
                 <label class="form-label">Property Title / Name *</label>
-                <input type="text" id="propName" class="form-control" placeholder="e.g. Marina Suites Premium Apartments" required>
+                <input type="text" id="propName" class="form-control" placeholder="e.g. Aerocity Prime Showrooms" required>
               </div>
 
               <div class="form-group">
@@ -970,62 +1054,85 @@
               <div class="form-group">
                 <label class="form-label">Property Category *</label>
                 <select id="propType" class="form-control" required>
+                  <option value="Showrooms">Showrooms & Retail</option>
                   <option value="Land">Land / Plots</option>
                   <option value="Houses">Houses & Luxury Villas</option>
                   <option value="Killa / Agricultural Land">Killa / Agricultural Land</option>
-                  <option value="Showrooms">Showrooms & Retail</option>
                   <option value="Luxury Residential">Luxury Residential / Apartments</option>
                   <option value="Commercial">Commercial Properties</option>
                 </select>
               </div>
 
               <div class="form-group">
-                <label class="form-label">Configuration / BHK</label>
-                <input type="text" id="propBhk" class="form-control" placeholder="e.g. 3 BHK, 500 Sq. Yds, 2 Killa">
+                <label class="form-label">Configuration / Size</label>
+                <input type="text" id="propBhk" class="form-control" placeholder="e.g. 1500 Sq. Ft, 3 BHK, 500 Sq. Yds">
               </div>
 
               <div class="form-group">
                 <label class="form-label">Price / Quote *</label>
-                <input type="text" id="propPrice" class="form-control" placeholder="e.g. ₹85 Lakh, ₹1.5 Cr, Price on Request" required>
+                <input type="text" id="propPrice" class="form-control" placeholder="e.g. ₹95 Lakh, ₹2.1 Cr, Price on Request" required>
               </div>
 
               <div class="form-group">
                 <label class="form-label">Status Tag</label>
                 <select id="propStatus" class="form-control">
+                  <option value="Available">Available</option>
                   <option value="New Launch">New Launch</option>
                   <option value="Exclusive Listing">Exclusive Listing</option>
                   <option value="Direct Deal">Direct Deal</option>
-                  <option value="Available">Available</option>
                   <option value="Sold Out">Sold Out</option>
                 </select>
               </div>
 
+              <!-- PHOTO SELECTION (FINDER UPLOAD + PRESETS) -->
               <div class="form-group form-group-full">
-                <label class="form-label">Property Image URL (or choose from luxury presets below) *</label>
-                <input type="url" id="propImage" class="form-control" placeholder="https://images.unsplash.com/..." required>
+                <label class="form-label">Property Photo *</label>
                 
+                <!-- Mac Finder / Laptop Upload Zone -->
+                <div class="upload-zone-box" id="uploadZone" onclick="document.getElementById('propFileInput').click()">
+                  <input type="file" id="propFileInput" accept="image/*" style="display: none;">
+                  <div class="upload-icon-circle">📂</div>
+                  <div class="upload-title">Click to Choose Photo from Laptop (Finder)</div>
+                  <div class="upload-desc">Select any JPG, PNG or WebP file from your computer — automatically compressed for fast loading</div>
+                </div>
+
+                <!-- Preview Panel -->
+                <div id="imagePreviewContainer" class="image-preview-panel">
+                  <img id="imagePreview" class="preview-thumbnail" src="" alt="Selected Preview">
+                  <div class="preview-info">
+                    <div id="imagePreviewName" class="preview-name">Photo Selected</div>
+                    <div class="preview-meta">✔ Optimized & Ready to publish</div>
+                  </div>
+                  <button type="button" class="btn-action btn-del" onclick="clearSelectedImage()" style="max-width: fit-content; padding: 6px 12px;">Remove</button>
+                </div>
+
+                <!-- Hidden Input holding the Base64 Data or Image URL -->
+                <input type="hidden" id="propImage">
+
+                <!-- 1-Click Fallback Presets -->
+                <div class="preset-header">Or pick a 1-click curated luxury photo:</div>
                 <div class="preset-photos">
-                  <div class="preset-item" data-url="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=800&q=80">
-                    <img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=300&q=70" alt="Luxury Villa">
-                    <span class="preset-label">Villa</span>
-                  </div>
-                  <div class="preset-item" data-url="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=800&q=80">
-                    <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=300&q=70" alt="Apartment">
-                    <span class="preset-label">Apartment</span>
-                  </div>
-                  <div class="preset-item" data-url="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=800&q=80">
-                    <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=300&q=70" alt="Plot Land">
-                    <span class="preset-label">Plot Land</span>
-                  </div>
-                  <div class="preset-item" data-url="https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&w=800&q=80">
-                    <img src="https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&w=300&q=70" alt="Agricultural Field">
-                    <span class="preset-label">Killa / Agri</span>
-                  </div>
-                  <div class="preset-item" data-url="https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=800&q=80">
+                  <div class="preset-item" data-url="https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=600&q=70">
                     <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=300&q=70" alt="Showroom Retail">
                     <span class="preset-label">Showroom</span>
                   </div>
-                  <div class="preset-item" data-url="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80">
+                  <div class="preset-item" data-url="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=600&q=70">
+                    <img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=300&q=70" alt="Luxury Villa">
+                    <span class="preset-label">Villa</span>
+                  </div>
+                  <div class="preset-item" data-url="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=600&q=70">
+                    <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=300&q=70" alt="Apartment">
+                    <span class="preset-label">Apartment</span>
+                  </div>
+                  <div class="preset-item" data-url="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=600&q=70">
+                    <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=300&q=70" alt="Plot Land">
+                    <span class="preset-label">Plot Land</span>
+                  </div>
+                  <div class="preset-item" data-url="https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&w=600&q=70">
+                    <img src="https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&w=300&q=70" alt="Agricultural Field">
+                    <span class="preset-label">Killa / Agri</span>
+                  </div>
+                  <div class="preset-item" data-url="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=600&q=70">
                     <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=300&q=70" alt="House Exterior">
                     <span class="preset-label">Modern House</span>
                   </div>
@@ -1038,7 +1145,7 @@
               </div>
             </div>
 
-            <button type="submit" class="btn-gold" style="padding: 0.8rem 1.8rem;">
+            <button type="submit" class="btn-gold" style="padding: 0.85rem 2rem; font-size: 1rem;">
               <span>Publish Property to Live Website</span> 🚀
             </button>
           </form>
@@ -1116,7 +1223,7 @@
     const STORAGE_PROPS_KEY = 'velmora_properties_v1';
     const STORAGE_LEADS_KEY = 'velmora_inquiries_v1';
 
-    // Default Seed Properties if none exist
+    // Default Seed Properties
     const DEFAULT_PROPERTIES = [
       {
         id: "prop_1",
@@ -1159,11 +1266,10 @@
         bhk: "Multiple Acres",
         price: "Price on Request",
         status: "Direct Deal",
-        image: "https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&w=800&q=80"
+        image: "https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&w=600&q=70"
       }
     ];
 
-    // Seed Data
     function getStoredProperties() {
       const stored = localStorage.getItem(STORAGE_PROPS_KEY);
       if (!stored) {
@@ -1171,7 +1277,8 @@
         return DEFAULT_PROPERTIES;
       }
       try {
-        return JSON.parse(stored);
+        const parsed = JSON.parse(stored);
+        return Array.isArray(parsed) && parsed.length > 0 ? parsed : DEFAULT_PROPERTIES;
       } catch (e) {
         return DEFAULT_PROPERTIES;
       }
@@ -1259,15 +1366,75 @@
       btn.addEventListener('click', () => switchTab(btn.dataset.tab));
     });
 
-    // ─── PRESET PHOTO SELECTOR ───
-    const presetItems = document.querySelectorAll('.preset-item');
+    // ─── LAPTOP / FINDER FILE UPLOAD WITH CANVAS COMPRESSION ───
+    const propFileInput = document.getElementById('propFileInput');
     const propImageInput = document.getElementById('propImage');
+    const imagePreviewContainer = document.getElementById('imagePreviewContainer');
+    const imagePreview = document.getElementById('imagePreview');
+    const imagePreviewName = document.getElementById('imagePreviewName');
+    const presetItems = document.querySelectorAll('.preset-item');
 
+    propFileInput.addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        const img = new Image();
+        img.onload = () => {
+          // Compress on Canvas to max 900px width/height and 0.75 quality
+          const canvas = document.createElement('canvas');
+          let width = img.width;
+          let height = img.height;
+          const maxDim = 900;
+          if (width > maxDim || height > maxDim) {
+            if (width > height) {
+              height = Math.round((height * maxDim) / width);
+              width = maxDim;
+            } else {
+              width = Math.round((width * maxDim) / height);
+              height = maxDim;
+            }
+          }
+          canvas.width = width;
+          canvas.height = height;
+          const ctx = canvas.getContext('2d');
+          ctx.drawImage(img, 0, 0, width, height);
+
+          // Get compressed Base64 Data URL (~80KB)
+          const compressedDataUrl = canvas.toDataURL('image/jpeg', 0.75);
+
+          propImageInput.value = compressedDataUrl;
+          imagePreview.src = compressedDataUrl;
+          imagePreviewName.innerText = file.name + ` (${Math.round(compressedDataUrl.length / 1024)} KB)`;
+          imagePreviewContainer.style.display = 'flex';
+
+          presetItems.forEach(i => i.classList.remove('selected'));
+          showToast("Photo selected from laptop & optimized!");
+        };
+        img.src = event.target.result;
+      };
+      reader.readAsDataURL(file);
+    });
+
+    window.clearSelectedImage = function() {
+      propImageInput.value = '';
+      propFileInput.value = '';
+      imagePreview.src = '';
+      imagePreviewContainer.style.display = 'none';
+      presetItems.forEach(i => i.classList.remove('selected'));
+    };
+
+    // Preset click handler
     presetItems.forEach(item => {
       item.addEventListener('click', () => {
         presetItems.forEach(i => i.classList.remove('selected'));
         item.classList.add('selected');
-        propImageInput.value = item.dataset.url;
+        const url = item.dataset.url;
+        propImageInput.value = url;
+        imagePreview.src = url;
+        imagePreviewName.innerText = "Curated Preset: " + item.querySelector('.preset-label').innerText;
+        imagePreviewContainer.style.display = 'flex';
       });
     });
 
@@ -1346,7 +1513,7 @@
       grid.innerHTML = props.map(p => `
         <div class="prop-admin-card">
           <div class="prop-img-box">
-            <img src="${p.image}" alt="${p.name}" onerror="this.src='https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=800&q=80'">
+            <img src="${p.image}" alt="${p.name}" onerror="this.src='https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=600&q=70'">
             <div class="prop-status-tag ${p.status === 'Sold Out' ? 'sold' : ''}">${p.status || 'Available'}</div>
           </div>
           <div class="prop-content">
@@ -1373,9 +1540,15 @@
       `).join('');
     }
 
-    // ADD PROPERTY
+    // ADD PROPERTY FORM SUBMIT
     document.getElementById('addPropertyForm').addEventListener('submit', (e) => {
       e.preventDefault();
+
+      const imageVal = document.getElementById('propImage').value.trim();
+      if (!imageVal) {
+        alert("Please select a photo from your laptop or pick a preset image below!");
+        return;
+      }
 
       const newProp = {
         id: "prop_" + Date.now(),
@@ -1385,7 +1558,7 @@
         bhk: document.getElementById('propBhk').value.trim(),
         price: document.getElementById('propPrice').value.trim(),
         status: document.getElementById('propStatus').value,
-        image: document.getElementById('propImage').value.trim(),
+        image: imageVal,
         brochure: document.getElementById('propBrochure').value.trim() || null,
         createdAt: new Date().toISOString()
       };
@@ -1395,9 +1568,12 @@
       saveProperties(props);
 
       document.getElementById('addPropertyForm').reset();
-      presetItems.forEach(i => i.classList.remove('selected'));
+      clearSelectedImage();
       refreshAll();
       showToast("Property published to live website!");
+
+      // Scroll to list
+      document.getElementById('propertiesListAdmin').scrollIntoView({ behavior: 'smooth' });
     });
 
     // TOGGLE STATUS

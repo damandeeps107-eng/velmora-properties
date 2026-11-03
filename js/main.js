@@ -205,6 +205,14 @@ function renderProperties(filteredList = null) {
   
   const propertiesToRender = filteredList || getLiveProperties();
   
+  // Update live count badge
+  const countEl = document.getElementById('liveListingCount');
+  if (countEl) {
+    countEl.innerText = `${propertiesToRender.length}`;
+  }
+  
+  console.log(`[Velmora Sync] Rendered ${propertiesToRender.length} live properties.`);
+  
   if (propertiesToRender.length === 0) {
     grid.innerHTML = `
       <div style="grid-column: 1/-1; text-align: center; padding: 3rem 1rem; background: #fff; border-radius: 8px; border: 1px dashed #d4c3b3;">

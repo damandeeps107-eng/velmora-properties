@@ -1972,3 +1972,18 @@ textarea.form-control {
     text-align: center;
   }
 }
+
+/* Sold Out Listing & Admin Sync Enhancements */
+.property-card.property-sold {
+  opacity: 0.88;
+  position: relative;
+}
+
+.property-tag.tag-sold {
+  background: #c0392b !important;
+  color: #ffffff !important;
+  border-color: #e74c3c !important;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+

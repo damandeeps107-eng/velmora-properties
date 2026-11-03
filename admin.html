@@ -1,0 +1,1548 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Velmora Properties | Admin & Lead Portal</title>
+  <link rel="icon" type="image/png" href="assets/images/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-dark: #07150e;
+      --bg-card: #0d2217;
+      --bg-card-hover: #132d20;
+      --bg-input: #0a1b12;
+      --border-color: #1e3f2c;
+      --border-focus: #d4af37;
+      --text-main: #f5f5f0;
+      --text-muted: #9fb0a5;
+      --accent-gold: #d4af37;
+      --accent-gold-light: #f3df9b;
+      --accent-green: #2ecc71;
+      --accent-sold: #e74c3c;
+      --accent-whatsapp: #25d366;
+      --accent-blue: #3498db;
+      --radius-sm: 6px;
+      --radius-md: 10px;
+      --radius-lg: 16px;
+      --shadow-card: 0 10px 30px rgba(0, 0, 0, 0.4);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Outfit', sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ─── PIN LOCK SCREEN ─── */
+    #lockScreen {
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(circle at center, #0f2d1e 0%, #050e09 100%);
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+    }
+
+    .lock-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      box-shadow: var(--shadow-card), 0 0 50px rgba(212, 175, 55, 0.15);
+      border-radius: var(--radius-lg);
+      padding: 2.5rem 2rem;
+      max-width: 420px;
+      width: 100%;
+      text-align: center;
+      animation: fadeIn 0.4s ease;
+    }
+
+    .lock-logo {
+      width: 70px;
+      height: 70px;
+      object-fit: contain;
+      margin: 0 auto 1.25rem;
+      filter: drop-shadow(0 4px 12px rgba(212, 175, 55, 0.3));
+    }
+
+    .lock-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.75rem;
+      color: var(--accent-gold);
+      margin-bottom: 0.35rem;
+    }
+
+    .lock-subtitle {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      margin-bottom: 2rem;
+    }
+
+    .pin-input-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .pin-input {
+      width: 100%;
+      background: var(--bg-input);
+      border: 2px solid var(--border-color);
+      border-radius: var(--radius-md);
+      color: var(--accent-gold-light);
+      font-size: 1.75rem;
+      letter-spacing: 0.5rem;
+      text-align: center;
+      padding: 0.85rem;
+      font-weight: 700;
+      outline: none;
+      transition: all 0.25s ease;
+    }
+
+    .pin-input:focus {
+      border-color: var(--accent-gold);
+      box-shadow: 0 0 20px rgba(212, 175, 55, 0.25);
+    }
+
+    .lock-btn {
+      width: 100%;
+      background: linear-gradient(135deg, #d4af37, #aa8724);
+      color: #050e09;
+      font-weight: 700;
+      font-size: 1rem;
+      padding: 0.9rem;
+      border: none;
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .lock-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(212, 175, 55, 0.35);
+    }
+
+    .lock-hint {
+      color: var(--text-muted);
+      font-size: 0.8rem;
+      margin-top: 1.25rem;
+    }
+
+    .lock-error {
+      color: #ff6b6b;
+      font-size: 0.85rem;
+      margin-top: 0.75rem;
+      display: none;
+    }
+
+    /* ─── MAIN APP CONTAINER ─── */
+    #adminApp {
+      display: none;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* NAVBAR */
+    .admin-navbar {
+      background: rgba(7, 21, 14, 0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-color);
+      padding: 0.9rem 1.5rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand-side {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+    }
+
+    .brand-logo-small {
+      width: 38px;
+      height: 38px;
+      object-fit: contain;
+    }
+
+    .brand-titles h1 {
+      font-size: 1.15rem;
+      color: var(--accent-gold);
+      font-family: 'Playfair Display', serif;
+      letter-spacing: 0.5px;
+    }
+
+    .brand-titles span {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .btn-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.45rem 0.9rem;
+      font-size: 0.85rem;
+      border-radius: 999px;
+      font-weight: 500;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      border: 1px solid transparent;
+    }
+
+    .btn-view-site {
+      background: rgba(212, 175, 55, 0.12);
+      border-color: rgba(212, 175, 55, 0.3);
+      color: var(--accent-gold);
+    }
+
+    .btn-view-site:hover {
+      background: rgba(212, 175, 55, 0.25);
+    }
+
+    .btn-logout {
+      background: rgba(231, 76, 60, 0.12);
+      border-color: rgba(231, 76, 60, 0.3);
+      color: #ff7675;
+    }
+
+    .btn-logout:hover {
+      background: rgba(231, 76, 60, 0.25);
+    }
+
+    /* SUB-NAV / TABS */
+    .tabs-bar {
+      background: var(--bg-card);
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      padding: 0 1.5rem;
+      gap: 0.5rem;
+      overflow-x: auto;
+    }
+
+    .tab-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      font-weight: 500;
+      padding: 0.9rem 1.25rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      border-bottom: 3px solid transparent;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .tab-btn:hover {
+      color: var(--text-main);
+    }
+
+    .tab-btn.active {
+      color: var(--accent-gold);
+      border-bottom-color: var(--accent-gold);
+      font-weight: 600;
+    }
+
+    .tab-badge {
+      background: rgba(212, 175, 55, 0.2);
+      color: var(--accent-gold-light);
+      font-size: 0.75rem;
+      padding: 0.15rem 0.5rem;
+      border-radius: 999px;
+      font-weight: 700;
+    }
+
+    /* CONTENT LAYOUT */
+    .admin-main {
+      flex: 1;
+      max-width: 1300px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+    }
+
+    .tab-content {
+      display: none;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    /* STATS CARDS */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.25rem;
+      margin-bottom: 2rem;
+    }
+
+    .stat-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      padding: 1.4rem;
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+
+    .stat-card:hover {
+      transform: translateY(-2px);
+      border-color: rgba(212, 175, 55, 0.4);
+    }
+
+    .stat-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      background: var(--bg-input);
+      border: 1px solid var(--border-color);
+    }
+
+    .stat-meta h3 {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 0.25rem;
+    }
+
+    .stat-meta .stat-number {
+      font-size: 1.85rem;
+      font-weight: 700;
+      color: var(--accent-gold);
+    }
+
+    /* SECTION HEADER */
+    .section-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .section-title-wrap h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      color: var(--accent-gold);
+      margin-bottom: 0.25rem;
+    }
+
+    .section-title-wrap p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    /* BUTTONS */
+    .btn-gold {
+      background: linear-gradient(135deg, #d4af37, #aa8724);
+      color: #07150e;
+      font-weight: 600;
+      border: none;
+      border-radius: var(--radius-sm);
+      padding: 0.65rem 1.25rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.9rem;
+      transition: all 0.2s ease;
+    }
+
+    .btn-gold:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+    }
+
+    .btn-excel {
+      background: #107c41;
+      color: #fff;
+      font-weight: 600;
+      border: none;
+      border-radius: var(--radius-sm);
+      padding: 0.65rem 1.25rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.9rem;
+      transition: all 0.2s;
+    }
+
+    .btn-excel:hover {
+      background: #0b5d30;
+      transform: translateY(-1px);
+    }
+
+    /* CARD CONTAINER / PANEL */
+    .panel-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 1.75rem;
+      margin-bottom: 2rem;
+    }
+
+    /* FORMS */
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.25rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .form-group-full {
+      grid-column: 1 / -1;
+    }
+
+    .form-label {
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--text-muted);
+    }
+
+    .form-control {
+      background: var(--bg-input);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      color: var(--text-main);
+      padding: 0.75rem 0.9rem;
+      font-size: 0.95rem;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .form-control:focus {
+      border-color: var(--accent-gold);
+      box-shadow: 0 0 10px rgba(212, 175, 55, 0.2);
+    }
+
+    select.form-control option {
+      background: var(--bg-card);
+      color: var(--text-main);
+    }
+
+    /* PRESET IMAGES PICKER */
+    .preset-photos {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+      gap: 0.75rem;
+      margin-top: 0.5rem;
+    }
+
+    .preset-item {
+      position: relative;
+      border: 2px solid var(--border-color);
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      cursor: pointer;
+      aspect-ratio: 16/10;
+      transition: all 0.2s ease;
+    }
+
+    .preset-item:hover, .preset-item.selected {
+      border-color: var(--accent-gold);
+      transform: scale(1.03);
+      box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
+    }
+
+    .preset-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .preset-label {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(0, 0, 0, 0.75);
+      color: #fff;
+      font-size: 0.65rem;
+      padding: 2px 4px;
+      text-align: center;
+    }
+
+    /* PROPERTY LISTINGS GRID */
+    .properties-admin-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .prop-admin-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+
+    .prop-admin-card:hover {
+      border-color: rgba(212, 175, 55, 0.4);
+    }
+
+    .prop-img-box {
+      position: relative;
+      width: 100%;
+      height: 190px;
+      background: #000;
+      overflow: hidden;
+    }
+
+    .prop-img-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+
+    .prop-status-tag {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: rgba(7, 21, 14, 0.9);
+      color: var(--accent-gold);
+      border: 1px solid var(--accent-gold);
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 0.25rem 0.65rem;
+      border-radius: 999px;
+      backdrop-filter: blur(4px);
+    }
+
+    .prop-status-tag.sold {
+      background: rgba(231, 76, 60, 0.9);
+      color: #fff;
+      border-color: #e74c3c;
+    }
+
+    .prop-content {
+      padding: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .prop-type-badge {
+      font-size: 0.75rem;
+      color: var(--accent-gold);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      font-weight: 600;
+      margin-bottom: 0.35rem;
+    }
+
+    .prop-title {
+      font-size: 1.15rem;
+      color: #fff;
+      font-weight: 600;
+      margin-bottom: 0.35rem;
+    }
+
+    .prop-location {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 0.75rem;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .prop-price {
+      font-size: 1.1rem;
+      color: var(--accent-gold);
+      font-weight: 700;
+      margin-top: auto;
+      padding-top: 0.75rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .prop-card-actions {
+      display: flex;
+      gap: 0.5rem;
+      margin-top: 1rem;
+    }
+
+    .btn-action {
+      flex: 1;
+      padding: 0.55rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      border: 1px solid transparent;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.3rem;
+      transition: all 0.2s;
+    }
+
+    .btn-toggle-sold {
+      background: rgba(212, 175, 55, 0.15);
+      border-color: rgba(212, 175, 55, 0.4);
+      color: var(--accent-gold-light);
+    }
+
+    .btn-toggle-sold:hover {
+      background: rgba(212, 175, 55, 0.3);
+    }
+
+    .btn-del {
+      background: rgba(231, 76, 60, 0.15);
+      border-color: rgba(231, 76, 60, 0.4);
+      color: #ff7675;
+      max-width: 44px;
+    }
+
+    .btn-del:hover {
+      background: rgba(231, 76, 60, 0.35);
+    }
+
+    /* LEADS / CRM TABLE */
+    .leads-table-wrapper {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      overflow-x: auto;
+    }
+
+    table.leads-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.9rem;
+    }
+
+    .leads-table th {
+      background: var(--bg-input);
+      color: var(--accent-gold);
+      font-weight: 600;
+      padding: 1rem 1.15rem;
+      border-bottom: 1px solid var(--border-color);
+      white-space: nowrap;
+    }
+
+    .leads-table td {
+      padding: 1rem 1.15rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      vertical-align: middle;
+    }
+
+    .leads-table tr:hover td {
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .lead-name {
+      font-weight: 600;
+      color: #fff;
+    }
+
+    .lead-phone {
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+
+    .lead-tag {
+      display: inline-block;
+      padding: 0.2rem 0.55rem;
+      font-size: 0.75rem;
+      border-radius: 999px;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+
+    .lead-tag.buy {
+      background: rgba(46, 204, 113, 0.15);
+      color: #2ecc71;
+      border: 1px solid rgba(46, 204, 113, 0.3);
+    }
+
+    .lead-tag.sell {
+      background: rgba(230, 126, 34, 0.15);
+      color: #e67e22;
+      border: 1px solid rgba(230, 126, 34, 0.3);
+    }
+
+    .lead-status-pill {
+      display: inline-block;
+      padding: 0.2rem 0.65rem;
+      font-size: 0.75rem;
+      border-radius: 999px;
+      font-weight: 600;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .lead-status-pill.new {
+      background: rgba(52, 152, 219, 0.2);
+      color: #3498db;
+      border: 1px solid rgba(52, 152, 219, 0.4);
+    }
+
+    .lead-status-pill.contacted {
+      background: rgba(46, 204, 113, 0.2);
+      color: #2ecc71;
+      border: 1px solid rgba(46, 204, 113, 0.4);
+    }
+
+    .lead-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .btn-circle {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      font-size: 0.85rem;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    .btn-circle:hover {
+      transform: scale(1.1);
+    }
+
+    .btn-circle.wa {
+      background: #25d366;
+      color: #fff;
+    }
+
+    .btn-circle.call {
+      background: #3498db;
+      color: #fff;
+    }
+
+    .btn-circle.trash {
+      background: rgba(231, 76, 60, 0.2);
+      color: #ff7675;
+    }
+
+    /* EMPTY STATE */
+    .empty-state {
+      text-align: center;
+      padding: 3.5rem 1.5rem;
+      color: var(--text-muted);
+    }
+
+    .empty-icon {
+      font-size: 3rem;
+      margin-bottom: 0.75rem;
+      opacity: 0.6;
+    }
+
+    /* TOAST ALERT */
+    #toast {
+      position: fixed;
+      bottom: 25px;
+      right: 25px;
+      background: var(--bg-card);
+      border: 1px solid var(--accent-gold);
+      color: #fff;
+      padding: 0.85rem 1.4rem;
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-card);
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      z-index: 10000;
+      transform: translateY(100px);
+      opacity: 0;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    #toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 768px) {
+      .admin-navbar { padding: 0.75rem 1rem; }
+      .brand-titles h1 { font-size: 1rem; }
+      .admin-main { padding: 1.25rem 1rem; }
+      .form-grid { grid-template-columns: 1fr; }
+      .properties-admin-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 1. PIN LOCK SCREEN -->
+  <div id="lockScreen">
+    <div class="lock-box">
+      <img src="assets/images/logo.png" alt="Velmora Logo" class="lock-logo" onerror="this.style.display='none'">
+      <h2 class="lock-title">Velmora Properties</h2>
+      <p class="lock-subtitle">Authorized Admin & CRM Portal</p>
+      
+      <div class="pin-input-group">
+        <input type="password" id="pinCode" class="pin-input" maxlength="4" placeholder="••••" autofocus autocomplete="off">
+        <div id="lockError" class="lock-error">Incorrect PIN. Please try again.</div>
+      </div>
+      
+      <button id="unlockBtn" class="lock-btn">Unlock Portal</button>
+      <p class="lock-hint">Default Access PIN: <strong>7860</strong></p>
+    </div>
+  </div>
+
+  <!-- 2. MAIN APPLICATION -->
+  <div id="adminApp">
+    
+    <!-- HEADER -->
+    <header class="admin-navbar">
+      <div class="brand-side">
+        <img src="assets/images/logo.png" alt="Velmora Logo" class="brand-logo-small" onerror="this.style.display='none'">
+        <div class="brand-titles">
+          <h1>Velmora Properties</h1>
+          <span>Admin & Lead Manager</span>
+        </div>
+      </div>
+      
+      <div class="nav-actions">
+        <a href="index.html" target="_blank" class="btn-pill btn-view-site">
+          <span>View Live Site</span>
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        </a>
+        <button id="logoutBtn" class="btn-pill btn-logout">Logout</button>
+      </div>
+    </header>
+
+    <!-- TABS NAVIGATION -->
+    <nav class="tabs-bar">
+      <button class="tab-btn active" data-tab="tabOverview">
+        <span>📊 Overview</span>
+      </button>
+      <button class="tab-btn" data-tab="tabProperties">
+        <span>🏠 Manage Properties</span>
+        <span id="tabCountProps" class="tab-badge">0</span>
+      </button>
+      <button class="tab-btn" data-tab="tabLeads">
+        <span>👥 Inquiries & Leads</span>
+        <span id="tabCountLeads" class="tab-badge">0</span>
+      </button>
+    </nav>
+
+    <!-- MAIN BODY -->
+    <main class="admin-main">
+      
+      <!-- TAB 1: OVERVIEW -->
+      <section id="tabOverview" class="tab-content active">
+        <div class="section-bar">
+          <div class="section-title-wrap">
+            <h2>Business Snapshot</h2>
+            <p>Real-time status of your website listings and prospective buyers.</p>
+          </div>
+          <button class="btn-gold" onclick="switchTab('tabProperties')">+ Add New Property</button>
+        </div>
+
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-icon">🏡</div>
+            <div class="stat-meta">
+              <h3>Total Properties</h3>
+              <div id="statTotalProps" class="stat-number">0</div>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon">✨</div>
+            <div class="stat-meta">
+              <h3>Active Listings</h3>
+              <div id="statActiveProps" class="stat-number">0</div>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon">🏷️</div>
+            <div class="stat-meta">
+              <h3>Sold / Closed</h3>
+              <div id="statSoldProps" class="stat-number">0</div>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon">📩</div>
+            <div class="stat-meta">
+              <h3>Total Inquiries</h3>
+              <div id="statTotalLeads" class="stat-number">0</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- RECENT LEADS PREVIEW -->
+        <div class="panel-card">
+          <div class="section-bar" style="margin-bottom: 1rem;">
+            <div>
+              <h3 style="color: var(--accent-gold); font-size: 1.15rem;">Recent Website Inquiries</h3>
+              <p style="color: var(--text-muted); font-size: 0.85rem;">Latest visitors who requested property assistance on your website.</p>
+            </div>
+            <button class="btn-pill btn-view-site" onclick="switchTab('tabLeads')">View All Leads →</button>
+          </div>
+          <div id="overviewLeadsContainer"></div>
+        </div>
+      </section>
+
+      <!-- TAB 2: MANAGE PROPERTIES -->
+      <section id="tabProperties" class="tab-content">
+        <div class="section-bar">
+          <div class="section-title-wrap">
+            <h2>Properties Management</h2>
+            <p>Add new properties or edit existing listings displayed on the website.</p>
+          </div>
+        </div>
+
+        <!-- ADD PROPERTY ACCORDION / FORM -->
+        <div class="panel-card">
+          <h3 style="color: var(--accent-gold); font-size: 1.2rem; margin-bottom: 1.25rem; display: flex; align-items: center; gap: 0.5rem;">
+            <span>➕</span> Add New Property to Website
+          </h3>
+
+          <form id="addPropertyForm">
+            <div class="form-grid">
+              <div class="form-group">
+                <label class="form-label">Property Title / Name *</label>
+                <input type="text" id="propName" class="form-control" placeholder="e.g. Marina Suites Premium Apartments" required>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Location *</label>
+                <input type="text" id="propLocation" class="form-control" placeholder="e.g. Aerocity, Mohali" required>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Property Category *</label>
+                <select id="propType" class="form-control" required>
+                  <option value="Land">Land / Plots</option>
+                  <option value="Houses">Houses & Luxury Villas</option>
+                  <option value="Killa / Agricultural Land">Killa / Agricultural Land</option>
+                  <option value="Showrooms">Showrooms & Retail</option>
+                  <option value="Luxury Residential">Luxury Residential / Apartments</option>
+                  <option value="Commercial">Commercial Properties</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Configuration / BHK</label>
+                <input type="text" id="propBhk" class="form-control" placeholder="e.g. 3 BHK, 500 Sq. Yds, 2 Killa">
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Price / Quote *</label>
+                <input type="text" id="propPrice" class="form-control" placeholder="e.g. ₹85 Lakh, ₹1.5 Cr, Price on Request" required>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Status Tag</label>
+                <select id="propStatus" class="form-control">
+                  <option value="New Launch">New Launch</option>
+                  <option value="Exclusive Listing">Exclusive Listing</option>
+                  <option value="Direct Deal">Direct Deal</option>
+                  <option value="Available">Available</option>
+                  <option value="Sold Out">Sold Out</option>
+                </select>
+              </div>
+
+              <div class="form-group form-group-full">
+                <label class="form-label">Property Image URL (or choose from luxury presets below) *</label>
+                <input type="url" id="propImage" class="form-control" placeholder="https://images.unsplash.com/..." required>
+                
+                <div class="preset-photos">
+                  <div class="preset-item" data-url="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=800&q=80">
+                    <img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=300&q=70" alt="Luxury Villa">
+                    <span class="preset-label">Villa</span>
+                  </div>
+                  <div class="preset-item" data-url="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=800&q=80">
+                    <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=300&q=70" alt="Apartment">
+                    <span class="preset-label">Apartment</span>
+                  </div>
+                  <div class="preset-item" data-url="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=800&q=80">
+                    <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=300&q=70" alt="Plot Land">
+                    <span class="preset-label">Plot Land</span>
+                  </div>
+                  <div class="preset-item" data-url="https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&w=800&q=80">
+                    <img src="https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&w=300&q=70" alt="Agricultural Field">
+                    <span class="preset-label">Killa / Agri</span>
+                  </div>
+                  <div class="preset-item" data-url="https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=800&q=80">
+                    <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=300&q=70" alt="Showroom Retail">
+                    <span class="preset-label">Showroom</span>
+                  </div>
+                  <div class="preset-item" data-url="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80">
+                    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=300&q=70" alt="House Exterior">
+                    <span class="preset-label">Modern House</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group form-group-full">
+                <label class="form-label">Brochure Link (Optional)</label>
+                <input type="text" id="propBrochure" class="form-control" placeholder="assets/brochure.pdf or leave blank">
+              </div>
+            </div>
+
+            <button type="submit" class="btn-gold" style="padding: 0.8rem 1.8rem;">
+              <span>Publish Property to Live Website</span> 🚀
+            </button>
+          </form>
+        </div>
+
+        <!-- LISTINGS GRID -->
+        <div class="section-bar" style="margin-top: 2rem;">
+          <h3 style="color: var(--accent-gold); font-size: 1.25rem;">Live Listings on Website</h3>
+          <span style="color: var(--text-muted); font-size: 0.9rem;" id="propCountLabel">0 properties listed</span>
+        </div>
+
+        <div id="propertiesListAdmin" class="properties-admin-grid"></div>
+      </section>
+
+      <!-- TAB 3: LEADS & INQUIRIES CRM -->
+      <section id="tabLeads" class="tab-content">
+        <div class="section-bar">
+          <div class="section-title-wrap">
+            <h2>Client Inquiries & CRM</h2>
+            <p>Every inquiry submitted on the website is permanently stored here.</p>
+          </div>
+          <div style="display: flex; gap: 0.5rem; flex-wrap: wrap;">
+            <button id="exportCsvBtn" class="btn-excel">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              <span>Export to Excel / CSV</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- LEADS TABLE -->
+        <div class="leads-table-wrapper">
+          <table class="leads-table">
+            <thead>
+              <tr>
+                <th>Date & Time</th>
+                <th>Client Name & Phone</th>
+                <th>Requirement</th>
+                <th>Property Type & Location</th>
+                <th>Budget</th>
+                <th>Message</th>
+                <th>Follow-up</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="leadsTableBody">
+              <!-- Dynamically populated -->
+            </tbody>
+          </table>
+          <div id="leadsEmptyState" class="empty-state" style="display: none;">
+            <div class="empty-icon">📫</div>
+            <h3>No inquiries recorded yet</h3>
+            <p>Customer requirements submitted through your website will automatically appear here in real time.</p>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- TOAST NOTIFICATION -->
+  <div id="toast">
+    <span id="toastIcon">✔</span>
+    <span id="toastMsg">Action completed successfully</span>
+  </div>
+
+  <script>
+    /**
+     * VELMORA PROPERTIES - ADMIN & CRM PORTAL ENGINE
+     * Master Storage Keys:
+     * - 'velmora_properties_v1'
+     * - 'velmora_inquiries_v1'
+     */
+
+    const PIN_SECRET = "7860";
+    const STORAGE_PROPS_KEY = 'velmora_properties_v1';
+    const STORAGE_LEADS_KEY = 'velmora_inquiries_v1';
+
+    // Default Seed Properties if none exist
+    const DEFAULT_PROPERTIES = [
+      {
+        id: "prop_1",
+        name: "Mohali Crown",
+        location: "Block B, Aerocity, Mohali",
+        type: "Showrooms & Retail",
+        bhk: "3 BHK",
+        price: "Price on Request",
+        status: "New Launch",
+        image: "assets/images/mohali_crown_cover.png",
+        brochure: "assets/Mohali_Crown_Brochure.pdf"
+      },
+      {
+        id: "prop_2",
+        name: "Marina Suites Premium Apartments",
+        location: "Mohali, Punjab",
+        type: "Luxury Residential",
+        bhk: "1, 2 BHK",
+        price: "Price on Request",
+        status: "Exclusive Listing",
+        image: "assets/images/marina_cover.png",
+        brochure: "assets/Marina_Suites_Brochure.pdf"
+      },
+      {
+        id: "prop_3",
+        name: "The Marq by Atlantis",
+        location: "Aerocity, Mohali, Punjab",
+        type: "High-End Mixed-Use",
+        bhk: "3, 4, 5 BHK",
+        price: "Price on Request",
+        status: "Available",
+        image: "assets/images/marq_cover.jpg",
+        brochure: "assets/Marq_by_Atlantis_Brochure.pdf"
+      },
+      {
+        id: "prop_4",
+        name: "Agricultural & Farm Land Deals",
+        location: "Himachal Pradesh & Punjab",
+        type: "Agricultural Land",
+        bhk: "Multiple Acres",
+        price: "Price on Request",
+        status: "Direct Deal",
+        image: "https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&w=800&q=80"
+      }
+    ];
+
+    // Seed Data
+    function getStoredProperties() {
+      const stored = localStorage.getItem(STORAGE_PROPS_KEY);
+      if (!stored) {
+        localStorage.setItem(STORAGE_PROPS_KEY, JSON.stringify(DEFAULT_PROPERTIES));
+        return DEFAULT_PROPERTIES;
+      }
+      try {
+        return JSON.parse(stored);
+      } catch (e) {
+        return DEFAULT_PROPERTIES;
+      }
+    }
+
+    function saveProperties(props) {
+      localStorage.setItem(STORAGE_PROPS_KEY, JSON.stringify(props));
+      window.dispatchEvent(new Event('storage'));
+    }
+
+    function getStoredLeads() {
+      const stored = localStorage.getItem(STORAGE_LEADS_KEY);
+      if (!stored) return [];
+      try {
+        return JSON.parse(stored);
+      } catch (e) {
+        return [];
+      }
+    }
+
+    function saveLeads(leads) {
+      localStorage.setItem(STORAGE_LEADS_KEY, JSON.stringify(leads));
+      window.dispatchEvent(new Event('storage'));
+    }
+
+    // ─── PIN SECURITY ───
+    const lockScreen = document.getElementById('lockScreen');
+    const adminApp = document.getElementById('adminApp');
+    const pinInput = document.getElementById('pinCode');
+    const unlockBtn = document.getElementById('unlockBtn');
+    const lockError = document.getElementById('lockError');
+    const logoutBtn = document.getElementById('logoutBtn');
+
+    function checkAuth() {
+      if (sessionStorage.getItem('velmora_auth') === 'true') {
+        lockScreen.style.display = 'none';
+        adminApp.style.display = 'flex';
+        initAdminData();
+      } else {
+        lockScreen.style.display = 'flex';
+        adminApp.style.display = 'none';
+        pinInput.focus();
+      }
+    }
+
+    function handleUnlock() {
+      if (pinInput.value === PIN_SECRET) {
+        sessionStorage.setItem('velmora_auth', 'true');
+        lockError.style.display = 'none';
+        checkAuth();
+        showToast("Welcome back! Velmora Admin unlocked.");
+      } else {
+        lockError.style.display = 'block';
+        pinInput.value = '';
+        pinInput.focus();
+      }
+    }
+
+    unlockBtn.addEventListener('click', handleUnlock);
+    pinInput.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') handleUnlock();
+    });
+
+    logoutBtn.addEventListener('click', () => {
+      sessionStorage.removeItem('velmora_auth');
+      pinInput.value = '';
+      checkAuth();
+    });
+
+    // ─── TABS SWITCHER ───
+    const tabBtns = document.querySelectorAll('.tab-btn');
+    const tabContents = document.querySelectorAll('.tab-content');
+
+    function switchTab(targetId) {
+      tabBtns.forEach(b => {
+        b.classList.toggle('active', b.dataset.tab === targetId);
+      });
+      tabContents.forEach(c => {
+        c.classList.toggle('active', c.id === targetId);
+      });
+      refreshAll();
+    }
+
+    tabBtns.forEach(btn => {
+      btn.addEventListener('click', () => switchTab(btn.dataset.tab));
+    });
+
+    // ─── PRESET PHOTO SELECTOR ───
+    const presetItems = document.querySelectorAll('.preset-item');
+    const propImageInput = document.getElementById('propImage');
+
+    presetItems.forEach(item => {
+      item.addEventListener('click', () => {
+        presetItems.forEach(i => i.classList.remove('selected'));
+        item.classList.add('selected');
+        propImageInput.value = item.dataset.url;
+      });
+    });
+
+    // ─── INIT & REFRESH ───
+    function initAdminData() {
+      refreshAll();
+    }
+
+    function refreshAll() {
+      renderOverview();
+      renderPropertiesList();
+      renderLeadsList();
+    }
+
+    // 1. OVERVIEW
+    function renderOverview() {
+      const props = getStoredProperties();
+      const leads = getStoredLeads();
+
+      const activeProps = props.filter(p => p.status !== 'Sold Out').length;
+      const soldProps = props.filter(p => p.status === 'Sold Out').length;
+
+      document.getElementById('statTotalProps').innerText = props.length;
+      document.getElementById('statActiveProps').innerText = activeProps;
+      document.getElementById('statSoldProps').innerText = soldProps;
+      document.getElementById('statTotalLeads').innerText = leads.length;
+
+      document.getElementById('tabCountProps').innerText = props.length;
+      document.getElementById('tabCountLeads').innerText = leads.length;
+
+      const recentContainer = document.getElementById('overviewLeadsContainer');
+      if (leads.length === 0) {
+        recentContainer.innerHTML = `
+          <div style="text-align: center; padding: 2rem; color: var(--text-muted); font-size: 0.9rem;">
+            No inquiries recorded yet. Forms submitted on website will show here.
+          </div>
+        `;
+      } else {
+        const top3 = leads.slice(0, 3);
+        recentContainer.innerHTML = `
+          <div style="display: flex; flex-direction: column; gap: 0.75rem;">
+            ${top3.map(lead => `
+              <div style="background: var(--bg-input); border: 1px solid var(--border-color); border-radius: var(--radius-sm); padding: 0.9rem 1.15rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.75rem;">
+                <div>
+                  <div style="font-weight: 600; color: #fff; font-size: 0.95rem;">${lead.name} • <span style="color: var(--accent-gold); font-size: 0.85rem;">${lead.phone}</span></div>
+                  <div style="font-size: 0.8rem; color: var(--text-muted);">${lead.requirement} • ${lead.type} • ${lead.location} (Budget: ${lead.budget})</div>
+                </div>
+                <div style="display: flex; gap: 0.5rem;">
+                  <a href="https://wa.me/${cleanPhone(lead.phone)}?text=${encodeURIComponent(`Hello ${lead.name}, this is Velmora Properties regarding your inquiry for ${lead.type} in ${lead.location}.`)}" target="_blank" class="btn-circle wa" title="WhatsApp">💬</a>
+                  <a href="tel:${cleanPhone(lead.phone)}" class="btn-circle call" title="Call">📞</a>
+                </div>
+              </div>
+            `).join('')}
+          </div>
+        `;
+      }
+    }
+
+    // 2. PROPERTIES LIST
+    function renderPropertiesList() {
+      const props = getStoredProperties();
+      const grid = document.getElementById('propertiesListAdmin');
+      document.getElementById('propCountLabel').innerText = `${props.length} properties listed`;
+
+      if (props.length === 0) {
+        grid.innerHTML = `
+          <div class="empty-state" style="grid-column: 1/-1;">
+            <div class="empty-icon">🏠</div>
+            <h3>No properties found</h3>
+            <p>Use the form above to add your first property listing to the website.</p>
+          </div>
+        `;
+        return;
+      }
+
+      grid.innerHTML = props.map(p => `
+        <div class="prop-admin-card">
+          <div class="prop-img-box">
+            <img src="${p.image}" alt="${p.name}" onerror="this.src='https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=800&q=80'">
+            <div class="prop-status-tag ${p.status === 'Sold Out' ? 'sold' : ''}">${p.status || 'Available'}</div>
+          </div>
+          <div class="prop-content">
+            <span class="prop-type-badge">${p.type}</span>
+            <h4 class="prop-title">${p.name}</h4>
+            <div class="prop-location">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              <span>${p.location}</span>
+            </div>
+            ${p.bhk ? `<div style="font-size: 0.8rem; color: #bbb; margin-bottom: 0.5rem;">Config: ${p.bhk}</div>` : ''}
+            <div class="prop-price">
+              <span>${p.price}</span>
+            </div>
+            <div class="prop-card-actions">
+              <button class="btn-action btn-toggle-sold" onclick="togglePropertyStatus('${p.id}')">
+                ${p.status === 'Sold Out' ? '✔ Mark Available' : '🏷️ Mark Sold Out'}
+              </button>
+              <button class="btn-action btn-del" onclick="deleteProperty('${p.id}')" title="Delete Property">
+                🗑️
+              </button>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // ADD PROPERTY
+    document.getElementById('addPropertyForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const newProp = {
+        id: "prop_" + Date.now(),
+        name: document.getElementById('propName').value.trim(),
+        location: document.getElementById('propLocation').value.trim(),
+        type: document.getElementById('propType').value,
+        bhk: document.getElementById('propBhk').value.trim(),
+        price: document.getElementById('propPrice').value.trim(),
+        status: document.getElementById('propStatus').value,
+        image: document.getElementById('propImage').value.trim(),
+        brochure: document.getElementById('propBrochure').value.trim() || null,
+        createdAt: new Date().toISOString()
+      };
+
+      const props = getStoredProperties();
+      props.unshift(newProp);
+      saveProperties(props);
+
+      document.getElementById('addPropertyForm').reset();
+      presetItems.forEach(i => i.classList.remove('selected'));
+      refreshAll();
+      showToast("Property published to live website!");
+    });
+
+    // TOGGLE STATUS
+    window.togglePropertyStatus = function(propId) {
+      const props = getStoredProperties();
+      const target = props.find(p => p.id === propId);
+      if (target) {
+        target.status = target.status === 'Sold Out' ? 'Available' : 'Sold Out';
+        saveProperties(props);
+        refreshAll();
+        showToast(`Status updated to: ${target.status}`);
+      }
+    };
+
+    // DELETE PROPERTY
+    window.deleteProperty = function(propId) {
+      if (!confirm("Are you sure you want to delete this property from the website?")) return;
+      let props = getStoredProperties();
+      props = props.filter(p => p.id !== propId);
+      saveProperties(props);
+      refreshAll();
+      showToast("Property listing deleted.");
+    };
+
+    // 3. LEADS CRM
+    function renderLeadsList() {
+      const leads = getStoredLeads();
+      const tbody = document.getElementById('leadsTableBody');
+      const emptyState = document.getElementById('leadsEmptyState');
+
+      if (leads.length === 0) {
+        tbody.innerHTML = '';
+        emptyState.style.display = 'block';
+        return;
+      }
+
+      emptyState.style.display = 'none';
+      tbody.innerHTML = leads.map(l => `
+        <tr>
+          <td style="white-space: nowrap; font-size: 0.8rem; color: var(--text-muted);">${l.dateFormatted || formatDate(l.timestamp)}</td>
+          <td>
+            <div class="lead-name">${l.name}</div>
+            <div class="lead-phone">${l.phone}</div>
+          </td>
+          <td>
+            <span class="lead-tag ${(l.requirement || '').toLowerCase()}">${l.requirement || 'Enquiry'}</span>
+          </td>
+          <td>
+            <div style="font-weight: 500;">${l.type || '-'}</div>
+            <div style="font-size: 0.8rem; color: var(--text-muted);">${l.location || '-'}</div>
+          </td>
+          <td style="color: var(--accent-gold); font-weight: 600;">${l.budget || '-'}</td>
+          <td style="max-width: 220px; font-size: 0.85rem; color: var(--text-muted);">${escapeHtml(l.message || '-')}</td>
+          <td>
+            <span class="lead-status-pill ${(l.status || 'new').toLowerCase()}" onclick="toggleLeadStatus('${l.id}')">
+              ${l.status === 'Contacted' ? '✔ Contacted' : '● New Lead'}
+            </span>
+          </td>
+          <td>
+            <div class="lead-actions">
+              <a href="https://wa.me/${cleanPhone(l.phone)}?text=${encodeURIComponent(`Hello ${l.name}, this is Velmora Properties. We received your requirement for ${l.type} in ${l.location}.`)}" target="_blank" class="btn-circle wa" title="Chat on WhatsApp">💬</a>
+              <a href="tel:${cleanPhone(l.phone)}" class="btn-circle call" title="Direct Phone Call">📞</a>
+              <button class="btn-circle trash" onclick="deleteLead('${l.id}')" title="Delete Lead">🗑️</button>
+            </div>
+          </td>
+        </tr>
+      `).join('');
+    }
+
+    // TOGGLE LEAD STATUS
+    window.toggleLeadStatus = function(leadId) {
+      const leads = getStoredLeads();
+      const lead = leads.find(l => l.id === leadId);
+      if (lead) {
+        lead.status = lead.status === 'Contacted' ? 'New' : 'Contacted';
+        saveLeads(leads);
+        refreshAll();
+        showToast(`Lead marked as ${lead.status}`);
+      }
+    };
+
+    // DELETE LEAD
+    window.deleteLead = function(leadId) {
+      if (!confirm("Are you sure you want to remove this inquiry?")) return;
+      let leads = getStoredLeads();
+      leads = leads.filter(l => l.id !== leadId);
+      saveLeads(leads);
+      refreshAll();
+      showToast("Inquiry removed.");
+    };
+
+    // EXPORT TO CSV
+    document.getElementById('exportCsvBtn').addEventListener('click', () => {
+      const leads = getStoredLeads();
+      if (leads.length === 0) {
+        alert("No inquiries to export yet.");
+        return;
+      }
+
+      let csv = "Date,Name,Phone,Requirement,Property Type,Location,Budget,Message,Status\n";
+      leads.forEach(l => {
+        csv += `"${l.dateFormatted || l.timestamp}","${l.name}","${l.phone}","${l.requirement}","${l.type}","${l.location}","${l.budget}","${(l.message || '').replace(/"/g, '""')}","${l.status}"\n`;
+      });
+
+      const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.setAttribute("href", url);
+      link.setAttribute("download", `Velmora_Inquiries_${new Date().toISOString().slice(0,10)}.csv`);
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      showToast("Excel/CSV downloaded!");
+    });
+
+    // ─── HELPERS ───
+    function cleanPhone(phone) {
+      return (phone || '').replace(/[^0-9]/g, '');
+    }
+
+    function formatDate(isoStr) {
+      if (!isoStr) return '';
+      const d = new Date(isoStr);
+      return d.toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: 'numeric' });
+    }
+
+    function escapeHtml(text) {
+      const map = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' };
+      return text.replace(/[&<>"']/g, m => map[m]);
+    }
+
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      document.getElementById('toastMsg').innerText = msg;
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 3000);
+    }
+
+    // Auto-listen to changes across browser tabs
+    window.addEventListener('storage', () => {
+      refreshAll();
+    });
+
+    // Start
+    checkAuth();
+  </script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+{
+  "name": "Velmora Properties Admin",
+  "short_name": "Velmora Admin",
+  "description": "Property & Lead Management Portal for Velmora Properties",
+  "start_url": "/admin.html",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#07150e",
+  "theme_color": "#07150e",
+  "icons": [
+    {
+      "src": "assets/images/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "assets/images/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

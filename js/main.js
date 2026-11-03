@@ -103,6 +103,9 @@ document.addEventListener('DOMContentLoaded', () => {
   initSmoothScroll();
   initSiteBgSlider();
 
+  // Cloud sync properties from live website API
+  loadCloudProperties();
+
   // Listen for storage events (e.g. when Admin adds a property in another tab)
   window.addEventListener('storage', (e) => {
     if (e.key === STORAGE_PROPS_KEY) {
@@ -110,6 +113,38 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 });
+
+/**
+ * Load cloud properties from live API with static fallback
+ */
+async function loadCloudProperties() {
+  try {
+    let cloudData = null;
+    try {
+      const res = await fetch('/api/properties');
+      if (res.ok) {
+        cloudData = await res.json();
+      }
+    } catch (e) {}
+
+    if (!cloudData || !Array.isArray(cloudData) || cloudData.length === 0) {
+      try {
+        const staticRes = await fetch('/data/properties.json?t=' + Date.now());
+        if (staticRes.ok) {
+          cloudData = await staticRes.json();
+        }
+      } catch (e) {}
+    }
+
+    if (Array.isArray(cloudData) && cloudData.length > 0) {
+      localStorage.setItem(STORAGE_PROPS_KEY, JSON.stringify(cloudData));
+      renderProperties();
+      console.log(`[Velmora Cloud] Synchronized ${cloudData.length} live properties from cloud.`);
+    }
+  } catch (err) {
+    console.warn("[Velmora Cloud] Loaded from local cache.", err);
+  }
+}
 
 /**
  * Header Scroll Effects
@@ -431,6 +466,15 @@ function initForms() {
       } catch (err) {
         console.error("Storage error:", err);
       }
+
+      // Live Cloud Interconnection: Dispatch lead to Velmora Serverless API
+      try {
+        fetch('/api/leads', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(leadData)
+        }).catch(err => console.log('Lead cloud sync info:', err));
+      } catch (e) {}
       
       // WhatsApp prefilled message
       const waMsg = encodeURIComponent(

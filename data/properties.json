@@ -1,0 +1,45 @@
+[
+  {
+    "id": "prop_1",
+    "name": "Mohali Crown",
+    "location": "Block B, Aerocity, Mohali",
+    "type": "Showrooms & Retail",
+    "bhk": "3 BHK",
+    "price": "Price on Request",
+    "status": "New Launch",
+    "image": "assets/images/mohali_crown_cover.png",
+    "brochure": "assets/Mohali_Crown_Brochure.pdf"
+  },
+  {
+    "id": "prop_2",
+    "name": "Marina Suites Premium Apartments",
+    "location": "Mohali, Punjab",
+    "type": "Luxury Residential",
+    "bhk": "1, 2 BHK",
+    "price": "Price on Request",
+    "status": "Exclusive Listing",
+    "image": "assets/images/marina_cover.png",
+    "brochure": "assets/Marina_Suites_Brochure.pdf"
+  },
+  {
+    "id": "prop_3",
+    "name": "The Marq by Atlantis",
+    "location": "Aerocity, Mohali, Punjab",
+    "type": "High-End Mixed-Use",
+    "bhk": "3, 4, 5 BHK",
+    "price": "Price on Request",
+    "status": "Available",
+    "image": "assets/images/marq_cover.jpg",
+    "brochure": "assets/Marq_by_Atlantis_Brochure.pdf"
+  },
+  {
+    "id": "prop_4",
+    "name": "Agricultural & Farm Land Deals",
+    "location": "Himachal Pradesh & Punjab",
+    "type": "Agricultural Land",
+    "bhk": "Multiple Acres",
+    "price": "Price on Request",
+    "status": "Direct Deal",
+    "image": "https://images.unsplash.com/photo-1500937386664-56d1dfef3854?auto=format&fit=crop&w=600&q=70"
+  }
+]

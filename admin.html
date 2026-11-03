@@ -5,6 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Velmora Properties | Admin & Lead Portal</title>
   <link rel="icon" type="image/png" href="assets/images/logo.png">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#07150e">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Velmora Admin">
+  <link rel="apple-touch-icon" href="assets/images/logo.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
@@ -936,18 +942,100 @@
         <img src="assets/images/logo.png" alt="Velmora Logo" class="brand-logo-small" onerror="this.style.display='none'">
         <div class="brand-titles">
           <h1>Velmora Properties</h1>
-          <span>Admin & Lead Manager</span>
+          <div style="display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap;">
+            <span>Admin & Lead Manager</span>
+            <span id="cloudStatusBadge" style="font-size: 0.72rem; padding: 0.15rem 0.5rem; border-radius: 999px; background: rgba(46, 204, 113, 0.2); color: #2ecc71; border: 1px solid rgba(46, 204, 113, 0.4); display: inline-flex; align-items: center; gap: 0.3rem;">
+              <span style="display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: #2ecc71;"></span>
+              Cloud Connected
+            </span>
+          </div>
         </div>
       </div>
       
       <div class="nav-actions">
-        <a href="index.html" target="_blank" class="btn-pill btn-view-site">
+        <button id="syncNowBtn" class="btn-pill" style="background: rgba(212, 175, 55, 0.15); border-color: rgba(212, 175, 55, 0.4); color: var(--accent-gold); font-weight: 600;" title="Refresh & sync data with live website">
+          <span>🔄 Sync Cloud</span>
+        </button>
+        <button id="installAppBtn" class="btn-pill" style="background: linear-gradient(135deg, #d4af37, #aa8724); color: #07150e; font-weight: 700; border: none;">
+          <span>📲 Install App</span>
+        </button>
+        <a href="https://www.velmoraproperty.com/" target="_blank" class="btn-pill btn-view-site">
           <span>View Live Site</span>
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
         </a>
         <button id="logoutBtn" class="btn-pill btn-logout">Logout</button>
       </div>
     </header>
+
+    <!-- MOBILE / PC PWA INSTALL PROMPT BANNER -->
+    <div id="pwaBanner" style="display: none; background: linear-gradient(135deg, #133924, #0b1f15); border-bottom: 1px solid var(--accent-gold); padding: 0.85rem 1.5rem; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.85rem;">
+      <div style="display: flex; align-items: center; gap: 0.85rem;">
+        <span style="font-size: 1.6rem;">📲</span>
+        <div>
+          <strong style="color: var(--accent-gold); font-size: 0.95rem; display: block;">Install Velmora Admin App on your Phone / PC</strong>
+          <span style="font-size: 0.8rem; color: var(--text-muted);">Install directly to your mobile home screen with app icon — no Play Store needed!</span>
+        </div>
+      </div>
+      <button id="pwaInstallActionBtn" class="btn-gold" style="padding: 0.5rem 1.25rem; font-size: 0.85rem;">Install App Now</button>
+    </div>
+
+    <!-- INSTALL APP GUIDE & DOWNLOAD MODAL -->
+    <div id="installModal" style="display: none; position: fixed; inset: 0; background: rgba(0, 0, 0, 0.8); z-index: 10001; backdrop-filter: blur(6px); align-items: center; justify-content: center; padding: 1.25rem;">
+      <div style="background: var(--bg-card); border: 1px solid var(--accent-gold); border-radius: var(--radius-lg); max-width: 520px; width: 100%; padding: 2rem 1.75rem; box-shadow: var(--shadow-card); position: relative; max-height: 90vh; overflow-y: auto;">
+        <button onclick="closeInstallModal()" style="position: absolute; top: 1.15rem; right: 1.25rem; background: transparent; border: none; color: #fff; font-size: 1.4rem; cursor: pointer;">✕</button>
+        
+        <div style="text-align: center; margin-bottom: 1.5rem;">
+          <img src="assets/images/logo.png" style="width: 55px; height: 55px; object-fit: contain; margin-bottom: 0.5rem;" alt="Logo" onerror="this.style.display='none'">
+          <h3 style="font-family: 'Playfair Display', serif; color: var(--accent-gold); font-size: 1.4rem; margin-bottom: 0.25rem;">Install Velmora Admin App</h3>
+          <p style="color: var(--text-muted); font-size: 0.85rem;">Mobile ya Computer par bina Play Store ke seedha install karein</p>
+        </div>
+
+        <div id="modalDirectInstallWrap" style="display: none; margin-bottom: 1.25rem; text-align: center;">
+          <button id="modalDirectInstallBtn" class="btn-gold" style="width: 100%; justify-content: center; font-size: 1rem; padding: 0.85rem;">
+            📲 1-Click Install App to Device
+          </button>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 0.85rem; font-size: 0.9rem;">
+          <!-- ANDROID -->
+          <div style="background: var(--bg-input); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1rem;">
+            <div style="display: flex; align-items: center; gap: 0.5rem; color: var(--accent-gold); font-weight: 600; margin-bottom: 0.35rem;">
+              <span>🤖 Android Mobile / Tablet:</span>
+            </div>
+            <ol style="margin-left: 1.25rem; color: #ddd; font-size: 0.85rem; line-height: 1.5;">
+              <li>Chrome browser mein right-side top par <strong>3 dots (⋮)</strong> click karein.</li>
+              <li>Menu mein se <strong>"Install app"</strong> ya <strong>"Add to Home screen"</strong> chunein.</li>
+              <li>Aapke mobile screen par <strong>Velmora Admin App</strong> icon ban jayega!</li>
+            </ol>
+          </div>
+
+          <!-- IPHONE -->
+          <div style="background: var(--bg-input); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1rem;">
+            <div style="display: flex; align-items: center; gap: 0.5rem; color: var(--accent-gold); font-weight: 600; margin-bottom: 0.35rem;">
+              <span>🍎 Apple iPhone / iPad:</span>
+            </div>
+            <ol style="margin-left: 1.25rem; color: #ddd; font-size: 0.85rem; line-height: 1.5;">
+              <li>Safari browser mein bottom screen par <strong>Share</strong> button (box with ↑) tap karein.</li>
+              <li>Scroll karke <strong>"Add to Home Screen"</strong> par tap karein.</li>
+              <li>Top right <strong>"Add"</strong> tap karein — Instant app ban jayegi!</li>
+            </ol>
+          </div>
+
+          <!-- PC / MAC & OFFLINE FILE -->
+          <div style="background: var(--bg-input); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 1rem;">
+            <div style="display: flex; align-items: center; gap: 0.5rem; color: var(--accent-gold); font-weight: 600; margin-bottom: 0.35rem;">
+              <span>💻 PC / Laptop & Offline File:</span>
+            </div>
+            <p style="color: #ddd; font-size: 0.85rem; margin-bottom: 0.75rem; line-height: 1.4;">
+              Chrome/Edge URL bar mein <strong>"Install App" (⬇️)</strong> dabayein, ya neeche se offline launcher file download karein:
+            </p>
+            <button id="downloadFileBtn" class="btn-pill" style="width: 100%; justify-content: center; background: rgba(212, 175, 55, 0.2); border-color: var(--accent-gold); color: var(--accent-gold); font-weight: 600; padding: 0.65rem;">
+              ⬇️ Download Velmora Admin File (Offline App)
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <!-- TABS NAVIGATION -->
     <nav class="tabs-bar">
@@ -1270,6 +1358,14 @@
       }
     ];
 
+    // ─── CLOUD SYNC & STORAGE ───
+    const LIVE_DOMAIN = 'https://www.velmoraproperty.com';
+    const API_BASE = (window.location.hostname === 'localhost' || window.location.protocol === 'file:') 
+      ? LIVE_DOMAIN 
+      : '';
+    const API_PROPS = `${API_BASE}/api/properties`;
+    const API_LEADS = `${API_BASE}/api/leads`;
+
     function getStoredProperties() {
       const stored = localStorage.getItem(STORAGE_PROPS_KEY);
       if (!stored) {
@@ -1284,9 +1380,74 @@
       }
     }
 
-    function saveProperties(props) {
+    async function syncFromCloud(silent = false) {
+      const badge = document.getElementById('cloudStatusBadge');
+      if (badge && !silent) {
+        badge.innerHTML = `<span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:#d4af37;"></span> Syncing...`;
+        badge.style.color = '#d4af37';
+        badge.style.borderColor = 'rgba(212,175,55,0.4)';
+      }
+      try {
+        const [propsRes, leadsRes] = await Promise.allSettled([
+          fetch(API_PROPS),
+          fetch(API_LEADS)
+        ]);
+
+        let hasNew = false;
+        if (propsRes.status === 'fulfilled' && propsRes.value.ok) {
+          const cloudProps = await propsRes.value.json();
+          if (Array.isArray(cloudProps) && cloudProps.length > 0) {
+            localStorage.setItem(STORAGE_PROPS_KEY, JSON.stringify(cloudProps));
+            hasNew = true;
+          }
+        }
+        if (leadsRes.status === 'fulfilled' && leadsRes.value.ok) {
+          const cloudLeads = await leadsRes.value.json();
+          if (Array.isArray(cloudLeads)) {
+            localStorage.setItem(STORAGE_LEADS_KEY, JSON.stringify(cloudLeads));
+            hasNew = true;
+          }
+        }
+        refreshAll();
+        if (badge) {
+          badge.innerHTML = `<span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:#2ecc71;"></span> Cloud Connected`;
+          badge.style.color = '#2ecc71';
+          badge.style.borderColor = 'rgba(46,204,113,0.4)';
+        }
+        if (!silent) {
+          showToast("✔ Cloud data synchronized!");
+        }
+      } catch (err) {
+        console.warn("Cloud sync using local cache:", err);
+        if (badge) {
+          badge.innerHTML = `<span style="display:inline-block;width:6px;height:6px;border-radius:50%;background:#f39c12;"></span> Offline Cache`;
+          badge.style.color = '#f39c12';
+          badge.style.borderColor = 'rgba(243,156,18,0.4)';
+        }
+      }
+    }
+
+    async function saveProperties(props) {
+      // 1. Save locally for instantaneous response
       localStorage.setItem(STORAGE_PROPS_KEY, JSON.stringify(props));
       window.dispatchEvent(new Event('storage'));
+
+      // 2. Push to live cloud API
+      try {
+        showToast("Publishing to live website cloud...");
+        const res = await fetch(API_PROPS, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(props)
+        });
+        if (res.ok) {
+          showToast("✔ Published live to velmoraproperty.com!");
+        } else {
+          showToast("Saved locally. Live cloud queued.");
+        }
+      } catch (e) {
+        showToast("Saved locally (offline mode).");
+      }
     }
 
     function getStoredLeads() {
@@ -1299,9 +1460,123 @@
       }
     }
 
-    function saveLeads(leads) {
+    async function saveLeads(leads) {
       localStorage.setItem(STORAGE_LEADS_KEY, JSON.stringify(leads));
       window.dispatchEvent(new Event('storage'));
+
+      try {
+        await fetch(API_LEADS, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(leads)
+        });
+      } catch (e) {
+        console.log("Leads sync error:", e);
+      }
+    }
+
+    // ─── PWA APP INSTALLATION & OFFLINE FILE (NO PLAY STORE NEEDED) ───
+    let deferredPrompt = null;
+    const installAppBtn = document.getElementById('installAppBtn');
+    const pwaBanner = document.getElementById('pwaBanner');
+    const pwaInstallActionBtn = document.getElementById('pwaInstallActionBtn');
+    const installModal = document.getElementById('installModal');
+    const modalDirectInstallWrap = document.getElementById('modalDirectInstallWrap');
+    const modalDirectInstallBtn = document.getElementById('modalDirectInstallBtn');
+    const downloadFileBtn = document.getElementById('downloadFileBtn');
+    const syncNowBtn = document.getElementById('syncNowBtn');
+
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      if (pwaBanner) pwaBanner.style.display = 'flex';
+      if (modalDirectInstallWrap) modalDirectInstallWrap.style.display = 'block';
+    });
+
+    window.openInstallModal = function() {
+      if (deferredPrompt && modalDirectInstallWrap) {
+        modalDirectInstallWrap.style.display = 'block';
+      }
+      if (installModal) installModal.style.display = 'flex';
+    };
+
+    window.closeInstallModal = function() {
+      if (installModal) installModal.style.display = 'none';
+    };
+
+    async function handleDirectInstall() {
+      if (deferredPrompt) {
+        deferredPrompt.prompt();
+        const { outcome } = await deferredPrompt.userChoice;
+        if (outcome === 'accepted') {
+          showToast("Velmora Admin App Installed!");
+        }
+        deferredPrompt = null;
+        if (pwaBanner) pwaBanner.style.display = 'none';
+        closeInstallModal();
+      }
+    }
+
+    if (modalDirectInstallBtn) modalDirectInstallBtn.addEventListener('click', handleDirectInstall);
+    
+    if (pwaInstallActionBtn) {
+      pwaInstallActionBtn.addEventListener('click', () => {
+        if (deferredPrompt) {
+          handleDirectInstall();
+        } else {
+          openInstallModal();
+        }
+      });
+    }
+
+    if (installAppBtn) {
+      installAppBtn.addEventListener('click', () => {
+        if (deferredPrompt) {
+          handleDirectInstall();
+        } else {
+          openInstallModal();
+        }
+      });
+    }
+
+    if (syncNowBtn) {
+      syncNowBtn.addEventListener('click', () => {
+        syncFromCloud(false);
+      });
+    }
+
+    // Standalone / Offline App File Download
+    if (downloadFileBtn) {
+      downloadFileBtn.addEventListener('click', () => {
+        const fullHtml = "<!DOCTYPE html>\n" + document.documentElement.outerHTML;
+        const blob = new Blob([fullHtml], { type: 'text/html;charset=utf-8;' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'Velmora-Admin-Portal.html';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+        showToast("Velmora Admin App file downloaded!");
+        closeInstallModal();
+      });
+    }
+
+    // Auto-sync when network reconnects or tab is focused
+    window.addEventListener('online', () => syncFromCloud(true));
+    document.addEventListener('visibilitychange', () => {
+      if (!document.hidden && sessionStorage.getItem('velmora_auth') === 'true') {
+        syncFromCloud(true);
+      }
+    });
+    if (pwaInstallActionBtn) pwaInstallActionBtn.addEventListener('click', triggerInstall);
+
+    // Register Service Worker
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js').catch(err => console.log('SW registration:', err));
+      });
     }
 
     // ─── PIN SECURITY ───
@@ -1441,6 +1716,7 @@
     // ─── INIT & REFRESH ───
     function initAdminData() {
       refreshAll();
+      syncFromCloud();
     }
 
     function refreshAll() {

@@ -924,7 +924,7 @@
       <p class="lock-subtitle">Authorized Admin & CRM Portal</p>
       
       <div class="pin-input-group">
-        <input type="password" id="pinCode" class="pin-input" maxlength="4" placeholder="••••" autofocus autocomplete="off">
+        <input type="password" id="pinCode" class="pin-input" maxlength="4" placeholder="••••" autofocus autocomplete="off" inputmode="numeric">
         <div id="lockError" class="lock-error">Incorrect PIN. Please try again.</div>
       </div>
       
@@ -1592,7 +1592,6 @@
         syncFromCloud(true);
       }
     });
-    if (pwaInstallActionBtn) pwaInstallActionBtn.addEventListener('click', triggerInstall);
 
     // Register Service Worker
     if ('serviceWorker' in navigator) {
@@ -1622,7 +1621,8 @@
     }
 
     function handleUnlock() {
-      if (pinInput.value === PIN_SECRET) {
+      const entered = (pinInput.value || '').trim();
+      if (entered === PIN_SECRET) {
         sessionStorage.setItem('velmora_auth', 'true');
         lockError.style.display = 'none';
         checkAuth();
@@ -1637,6 +1637,11 @@
     unlockBtn.addEventListener('click', handleUnlock);
     pinInput.addEventListener('keydown', (e) => {
       if (e.key === 'Enter') handleUnlock();
+    });
+    pinInput.addEventListener('input', () => {
+      if ((pinInput.value || '').trim().length === 4) {
+        handleUnlock();
+      }
     });
 
     logoutBtn.addEventListener('click', () => {
